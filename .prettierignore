@@ -1,0 +1,16 @@
+README.md
+
+CHANGELOG.md
+node_modules
+package.json
+package-lock.json
+tsconfig.json
+.husky
+.github
+storybook-static
+dist
+build
+.storybook
+*.svg
+*.css
+jest.config.ts
