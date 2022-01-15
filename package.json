@@ -20,6 +20,7 @@
     "prepare": "husky install",
     "prettier:fix": "prettier -w ./src/**/*.ts",
     "lint:fix": "eslint --fix ./src/**/*.ts",
+    "lint-staged": "lint-staged",
     "git:rebase": "git pull --rebase origin main",
     "release": "npm run git:rebase && npm test && npm run build && standard-version && git push --follow-tags && npm publish --access=public",
     "lint": "eslint src/*",
