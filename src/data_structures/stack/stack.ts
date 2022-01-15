@@ -7,17 +7,28 @@ import StackNode from './stack_node';
 class Stack<T> {
   /**
    * Returns the size of the stack
+   *
+   * @returns { number } count of entries in stack
    */
   public size: number = 0;
 
+  /**
+   * @private
+   */
   private head: StackNode<T> | null = null;
 
+  /**
+   * @function Object() { [native code] }
+   * @param entries
+   */
   constructor(...entries: T[]) {
     this.push(...entries);
   }
 
   /**
    * Get the top-most entry from the stack. If stack is empty, returns null.
+   *
+   * @returns { T | null } the top-entry element from the stack
    */
   peek = (): T | null => {
     // stack is empty
@@ -29,6 +40,8 @@ class Stack<T> {
 
   /**
    * Checks if the stack has any elements or not.
+   *
+   * @returns { boolean } true, if stack is empty, else, false
    */
   isEmpty = (): boolean => {
     return this.size === 0;
@@ -37,7 +50,8 @@ class Stack<T> {
   /**
    * Adds single or multiple entries to the stack
    *
-   * @param entries All entries to be added to the stack
+   * @param {T[]} [entries=[]] All entries to be added to the stack
+   * @returns { void }
    */
   push = (...entries: T[]): void => {
     entries.forEach(this.pushOne);
@@ -46,6 +60,8 @@ class Stack<T> {
   /**
    * Removes the top-most entry from the stack and returns its value.
    * If the stack is empty, returns, null.
+   *
+   * @returns { T | null } top element from the stack
    */
   pop = (): T | null => {
     if (this.isEmpty()) {
@@ -65,6 +81,8 @@ class Stack<T> {
 
   /**
    * Creates a new stack with order of entries in reverse order
+   *
+   * @returns { Stack<T> } new stack with reversed entries
    */
   reverse = (): Stack<T> => {
     return new Stack<T>(...this.toArray().reverse());
@@ -72,6 +90,11 @@ class Stack<T> {
 
   /**
    * Converts the stack to array
+   *
+   * @example <caption>Example usage of toArray.</caption>
+   * // returns [1, 2, 3]
+   * new Stack(1, 2, 3).toArray();
+   * @returns { T[] } array of all the entries from stack
    */
   toArray = (): T[] => {
     const result: T[] = [];
@@ -91,6 +114,14 @@ class Stack<T> {
    *
    * @param cloneEntry Callback to clone the entry. Useful if you want to deep-clone the stack.
    * By default, returns the same entry
+   * @example <caption>Example usage of clone.</caption>
+   * // returns cloned stack
+   * new Stack(1, 2, 3).clone()
+   * @example <caption>Example usage of clone, with custom cloneEntry.</caption>
+   * // returns cloned stack with its elements cloned too.
+   * const stack = new Stack({ a: 1 }, { a: 2 }, { a: 3 });
+   * const clonedStack = stack.clone((e) => ({...e}));
+   * @returns { Stack<T> }
    */
   clone = (cloneEntry: (entry: T) => T = (entry) => entry): Stack<T> => {
     const clonedStack = new Stack<T>();
@@ -99,6 +130,8 @@ class Stack<T> {
   };
 
   /**
+   * @param entry
+   * @private
    * Pushes one entry to the stack
    */
   private pushOne = (entry: T): void => {
