@@ -96,8 +96,6 @@ class Stack<T> {
     return result.reverse();
   };
 
-  // todo: clone
-
   /**
    * Clones the stack into new object
    *
