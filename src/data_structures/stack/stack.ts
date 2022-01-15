@@ -13,7 +13,7 @@ class Stack<T> {
   private head: StackNode<T> | null = null;
 
   constructor(...entries: T[]) {
-    entries.forEach(this.push);
+    this.push(...entries);
   }
 
   /**
@@ -35,22 +35,12 @@ class Stack<T> {
   };
 
   /**
-   * Adds an entry to the stack
-   * @param entry Entry to be added to the stack
-   */
-  push = (entry: T) => {
-    this.pushOne(entry);
-  };
-
-  /**
-   * Adds multiple entries to the stack
+   * Adds single or multiple entries to the stack
    *
-   * @param entries Array of entries to add to the stack
-   * @param reverse {boolean} If the entries should be added from back. Default: false
+   * @param entries All entries to be added to the stack
    */
-  pushMany = (entries: T[], reverse: boolean = false): void => {
-    const processedEntries = reverse ? entries.reverse() : entries;
-    processedEntries.forEach(this.pushOne);
+  push = (...entries: T[]): void => {
+    entries.forEach(this.pushOne);
   };
 
   /**
@@ -104,7 +94,7 @@ class Stack<T> {
    */
   clone = (cloneEntry: (entry: T) => T = (entry) => entry): Stack<T> => {
     const clonedStack = new Stack<T>();
-    clonedStack.pushMany(this.toArray().map(cloneEntry));
+    clonedStack.push(...this.toArray().map(cloneEntry));
     return clonedStack;
   };
 

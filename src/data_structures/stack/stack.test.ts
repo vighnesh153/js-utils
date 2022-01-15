@@ -44,7 +44,7 @@ describe('Data Structures > Stack tests', () => {
       it('should allow to ', () => {
         const stack = new Stack<number>();
         expect(() => {
-          stack.pushMany([1, 2, 3]);
+          stack.push(1, 2, 3);
         }).not.toThrow();
       });
     });
@@ -141,16 +141,6 @@ describe('Data Structures > Stack tests', () => {
       stack1.push('e');
       stack1.push('f');
       expect(stack1.toArray()).toStrictEqual(['a', 'b', 'c', 'd', 'e', 'f']);
-
-      // Push many in-order
-      const stack2 = new Stack(1, 2, 3);
-      stack2.pushMany([4, 5, 6]);
-      expect(stack2.toArray()).toStrictEqual([1, 2, 3, 4, 5, 6]);
-
-      // Push many in-reverse
-      const stack3 = new Stack(1, 2, 3);
-      stack3.pushMany([4, 5, 6], true);
-      expect(stack3.toArray()).toStrictEqual([1, 2, 3, 6, 5, 4]);
     });
   });
 

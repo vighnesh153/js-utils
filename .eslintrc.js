@@ -24,6 +24,8 @@ module.exports = {
     'import/no-extraneous-dependencies': 'off',
     'no-plusplus': 'warn',
     'import/prefer-default-export': 'warn',
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': 'error',
     'prefer-arrow/prefer-arrow-functions': [
       'error',
       {
