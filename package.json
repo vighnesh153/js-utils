@@ -5,7 +5,7 @@
   "main": "./dist/utils.js",
   "umd-file": "./dist/utils.umd.js",
   "cjs-file": "./dist/utils.cjs.js",
-  "types": "./dist/index.d.ts",
+  "types": "./dist/utils.d.ts",
   "publishConfig": {
     "access": "public"
   },
@@ -55,6 +55,7 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-jest": "^25.3.4",
+    "eslint-plugin-prefer-arrow": "^1.2.3",
     "eslint-plugin-prettier": "^4.0.0",
     "husky": "^6.0.0",
     "jest": "^27.4.7",

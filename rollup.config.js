@@ -5,10 +5,10 @@ import typescript from '@rollup/plugin-typescript';
 
 import pkg from './package.json';
 
-const extensions = ['.ts', '.tsx'];
+const extensions = ['.ts'];
 
 export default {
-  input: 'src/index.ts',
+  input: 'src/utils.ts',
   plugins: [
     nodeResolve({
       extensions,
