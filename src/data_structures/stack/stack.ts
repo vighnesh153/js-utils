@@ -9,16 +9,26 @@ import StackNode from './stack_node';
  */
 class Stack<T> {
   /**
-   * Returns the size of the stack
+   * Stores the size of the stack
    *
+   * @private
    * @returns { number } count of entries in stack
    */
-  public size: number = 0;
+  private countOfNodes: number = 0;
 
   /**
    * @private
    */
   private head: StackNode<T> | null = null;
+
+  /**
+   * Size of the stack
+   *
+   * @type { number }
+   */
+  get size(): number {
+    return this.countOfNodes;
+  }
 
   /**
    * @function Object() { [native code] }
@@ -47,7 +57,7 @@ class Stack<T> {
    * @returns { boolean } true, if stack is empty, else, false
    */
   isEmpty = (): boolean => {
-    return this.size === 0;
+    return this.countOfNodes === 0;
   };
 
   /**
@@ -72,7 +82,7 @@ class Stack<T> {
     }
 
     // Decrement the stack size
-    this.size -= 1;
+    this.countOfNodes -= 1;
 
     // Remove the node and set head to the next node
     const toRemoveNode = this.head!;
@@ -129,7 +139,7 @@ class Stack<T> {
    */
   private pushOne = (entry: T): void => {
     const newNode = new StackNode(entry);
-    this.size += 1;
+    this.countOfNodes += 1;
 
     // stack is empty
     if (this.head === null) {
