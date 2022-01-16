@@ -31,6 +31,15 @@ class Stack<T> {
   }
 
   /**
+   * Checks if the stack has any elements.
+   *
+   * @type { boolean } true, if stack is empty, else, false
+   */
+  get isEmpty(): boolean {
+    return this.countOfNodes === 0;
+  }
+
+  /**
    * @function Object() { [native code] }
    * @param entries
    */
@@ -45,19 +54,10 @@ class Stack<T> {
    */
   peek = (): T | null => {
     // stack is empty
-    if (this.isEmpty()) {
+    if (this.isEmpty) {
       return null;
     }
     return this.head!.entry;
-  };
-
-  /**
-   * Checks if the stack has any elements or not.
-   *
-   * @returns { boolean } true, if stack is empty, else, false
-   */
-  isEmpty = (): boolean => {
-    return this.countOfNodes === 0;
   };
 
   /**
@@ -77,7 +77,7 @@ class Stack<T> {
    * @returns { T | null } top element from the stack
    */
   pop = (): T | null => {
-    if (this.isEmpty()) {
+    if (this.isEmpty) {
       return null;
     }
 
