@@ -35,5 +35,9 @@ module.exports = {
         classPropertiesAllowed: false,
       },
     ],
+    'jsdoc/require-param-type': 'error',
+    'jsdoc/require-returns-description': 'error',
+    'jsdoc/no-undefined-types': 'error',
+    'valid-jsdoc': 'error',
   },
 };
