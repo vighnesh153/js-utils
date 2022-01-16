@@ -4,6 +4,8 @@
 
 /**
  * Internal class to be used only in stack's class.
+ *
+ * @internal
  */
 class StackNode<T> {
   public entry: T;

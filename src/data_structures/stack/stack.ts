@@ -4,6 +4,9 @@
 
 import StackNode from './stack_node';
 
+/**
+ * @classdesc This is a stack class
+ */
 class Stack<T> {
   /**
    * Returns the size of the stack
@@ -89,11 +92,8 @@ class Stack<T> {
   };
 
   /**
-   * Converts the stack to array
+   * Converts the stack to array. Order is from bottom to top of stack.
    *
-   * @example <caption>Example usage of toArray.</caption>
-   * // returns [1, 2, 3]
-   * new Stack(1, 2, 3).toArray();
    * @returns { T[] } array of all the entries from stack
    */
   toArray = (): T[] => {
@@ -114,13 +114,6 @@ class Stack<T> {
    *
    * @param cloneEntry Callback to clone the entry. Useful if you want to deep-clone the stack.
    * By default, returns the same entry
-   * @example <caption>Example usage of clone.</caption>
-   * // returns cloned stack
-   * new Stack(1, 2, 3).clone()
-   * @example <caption>Example usage of clone, with custom cloneEntry.</caption>
-   * // returns cloned stack with its elements cloned too.
-   * const stack = new Stack({ a: 1 }, { a: 2 }, { a: 3 });
-   * const clonedStack = stack.clone((e) => ({...e}));
    * @returns { Stack<T> }
    */
   clone = (cloneEntry: (entry: T) => T = (entry) => entry): Stack<T> => {
