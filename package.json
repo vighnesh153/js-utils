@@ -15,6 +15,7 @@
     "build:declaration": "tsc",
     "build:rollup": "rollup -c rollup.config.js",
     "build": "npm run cleanup && npm-run-all build:*",
+    "typedoc": "typedoc",
     "test": "jest --passWithNoTests",
     "test:watch": "jest --watch",
     "prepare": "husky install",
