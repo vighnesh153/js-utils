@@ -5,189 +5,83 @@
 import Stack from './stack';
 
 describe('Data Structures > Stack tests', () => {
-  describe('Stack initialization', () => {
-    it('should allow to initialize the stack with no entries', () => {
-      const stack = new Stack();
-      expect(stack).toBeDefined();
-    });
-
-    it('should allow to initialize the stack with 1 entry', () => {
-      const stack = new Stack(1);
-      expect(stack).toBeDefined();
-    });
-
-    it('should allow to initialize the stack with multiple entries', () => {
-      const stack = new Stack('a', 'b', 'c');
-      expect(stack).toBeDefined();
-    });
+  it('should allow to initialize the stack', () => {
+    const stack = new Stack(1, 2, 3);
+    expect(stack).toBeDefined();
   });
 
-  describe('Add entries to Stack', () => {
-    describe('One entry at a time', () => {
-      it('should allow to add entries to empty stack without any errors', () => {
-        const stack = new Stack<number>();
-        expect(() => {
-          stack.push(2);
-        }).not.toThrow();
-      });
-
-      it('should allow to add entries to non-empty stack without any errors', () => {
-        const stack = new Stack<number>(1);
-        expect(() => {
-          stack.push(2);
-          stack.push(3);
-        }).not.toThrow();
-      });
-    });
-
-    describe('Multiple entries at a time', () => {
-      it('should allow to ', () => {
-        const stack = new Stack<number>();
-        expect(() => {
-          stack.push(1, 2, 3);
-        }).not.toThrow();
-      });
-    });
+  it('should allow to convert the stack into an array', () => {
+    const stack = new Stack(1, 2, 3, 4);
+    expect(stack.toArray()).toStrictEqual([1, 2, 3, 4]);
   });
 
-  describe('Remove entries from Stack', () => {
-    it('should return null if "pop" is invoked on empty stack', () => {
-      const stack = new Stack();
-      expect(stack.pop()).toBeNull();
-    });
-
-    it('should return the only entry in stack, if stack has just 1 element', () => {
-      const stack = new Stack(1);
-      expect(stack.pop()).toBe(1);
-    });
-
-    it('should return the top-most value from stack if stack has multiple elements', () => {
-      const stack = new Stack(1, 2, 3);
-      expect(stack.pop()).toBe(3);
-    });
-
-    it('should pop the stack elements in correct order', () => {
-      const stack = new Stack(1, 2, 3);
-      expect(stack.pop()).toBe(3);
-      expect(stack.pop()).toBe(2);
-      expect(stack.pop()).toBe(1);
-      expect(stack.pop()).toBe(null);
-    });
+  it('should allow to push entries to the stack', () => {
+    const stack = new Stack(1);
+    stack.push(2, 3);
+    expect(stack.toArray()).toStrictEqual([1, 2, 3]);
   });
 
-  describe('Peek into the stack', () => {
-    it('should return null if "peek" is invoked on an empty stack', () => {
-      const stack = new Stack();
-      expect(stack.peek()).toBeNull();
-    });
-
-    it('should return the top-most value from the stack', () => {
-      const stack = new Stack(1, 2, 3);
-      expect(stack.peek()).toBe(3);
-    });
+  it('should allow to pop out entries from the stack', () => {
+    const stack = new Stack(1, 2, 3, 4, 5, 6);
+    stack.pop();
+    expect(stack.toArray()).toStrictEqual([1, 2, 3, 4, 5]);
   });
 
-  describe('Size of the stack', () => {
-    it('should be 0 if stack is empty', () => {
-      const stack = new Stack();
-      expect(stack.size).toBe(0);
-    });
-
-    it('should be correct size after performing multiple operations', () => {
-      const stack = new Stack(1, 2, 3);
-
-      expect(stack.size).toBe(3);
-
-      // add 1 entry to the stack
-      stack.push(4);
-
-      expect(stack.size).toBe(4);
-
-      // remove 2 entries from stack
-      stack.pop();
-      stack.pop();
-
-      expect(stack.size).toBe(2);
-
-      // peek won't change the stack size
-      stack.peek();
-      stack.peek();
-      stack.peek();
-
-      expect(stack.size).toBe(2);
-
-      // Invoking "pop", more number-of-times than
-      // current stack size, size will always be 0
-      stack.pop();
-      stack.pop();
-      stack.pop();
-      stack.pop();
-      stack.pop();
-
-      expect(stack.size).toBe(0);
-    });
+  it('should return the popped element', () => {
+    const stack = new Stack(1, 2, 3, 4);
+    const poppedElement = stack.pop();
+    expect(poppedElement).toBe(4);
   });
 
-  describe('Convert stack to array', () => {
-    it('should return an empty array if stack has no elements', () => {
-      const stack = new Stack();
-      expect(stack.toArray()).toStrictEqual([]);
-    });
-
-    it('should return an elements in same order they were inserted', () => {
-      // Push one entry at a time
-      const stack1 = new Stack('a', 'b', 'c');
-      stack1.push('d');
-      stack1.push('e');
-      stack1.push('f');
-      expect(stack1.toArray()).toStrictEqual(['a', 'b', 'c', 'd', 'e', 'f']);
-    });
+  it('should allow to peek into the stack', () => {
+    const stack = new Stack(1, 2, 3);
+    const peekedElement = stack.peek();
+    expect(peekedElement).toBe(3);
   });
 
-  describe('Reverse the stack', () => {
-    it('should reverse an empty stack to an empty stack', () => {
-      const stack = new Stack();
-      const reversedStack = stack.reverse();
-      expect(reversedStack.size).toBe(0);
-    });
-
-    it('should reverse a non-empty stack', () => {
-      const stack = new Stack(1, 2, 3);
-      const reversedStack = stack.reverse();
-      expect(stack.toArray()).toStrictEqual([1, 2, 3]);
-      expect(reversedStack.toArray()).toStrictEqual([3, 2, 1]);
-    });
+  it('should not modify the stack when peeking into it', () => {
+    const stack = new Stack(1, 2, 3);
+    stack.peek();
+    expect(stack.toArray()).toStrictEqual([1, 2, 3]);
   });
 
-  describe('Clone the stack', () => {
-    it('should not update original stack if cloned stack is updated', () => {
-      const stack = new Stack<number>();
-      const clonedStack = stack.clone();
-      clonedStack.push(1);
-      expect(stack.size).toBe(0);
-      expect(clonedStack.size).toBe(1);
-    });
+  it('should return the size of the stack as 0 if empty', () => {
+    const stack = new Stack();
+    expect(stack.size).toBe(0);
+  });
 
-    it('should use the default cloneEntry callback', () => {
-      const stack = new Stack<{ n: number }>();
-      stack.push({ n: 123 });
-      const clonedStack = stack.clone();
+  it('should return the correct size of stack if stack has entries', () => {
+    const stack = new Stack(1, 2, 3, 4);
+    expect(stack.size).toBe(4);
+  });
 
-      const entryOriginal = stack.peek();
-      const entryCloned = clonedStack.peek();
+  it('should allow to reverse the stack', () => {
+    const stack = new Stack(1, 2, 3, 4);
+    const reversedStack = stack.reverse();
+    expect(reversedStack.toArray()).toStrictEqual([4, 3, 2, 1]);
+  });
 
-      expect(entryOriginal).toBe(entryCloned);
-    });
+  it('should not update the source stack when reversing', () => {
+    const stack = new Stack(1, 2, 3, 4);
+    stack.reverse();
+    expect(stack.toArray()).toStrictEqual([1, 2, 3, 4]);
+  });
 
-    it('should use the cloneEntry callback if provided', () => {
-      const stack = new Stack<{ n: number }>();
-      stack.push({ n: 123 });
-      const clonedStack = stack.clone((e) => ({ ...e }));
+  it('should allow to clone the stack', () => {
+    const stack = new Stack(1, 2, 3, 4);
+    const clonedStack = stack.clone();
+    expect(clonedStack.toArray()).toStrictEqual([1, 2, 3, 4]);
+  });
 
-      const entryOriginal = stack.peek();
-      const entryCloned = clonedStack.peek();
+  it('should return a new instance of the stack when cloning', () => {
+    const stack = new Stack(1, 2, 3);
+    const clonedStack = stack.clone();
+    expect(clonedStack).not.toBe(stack);
+  });
 
-      expect(entryOriginal).not.toBe(entryCloned);
-    });
+  it('should use the clonedEntry callback if provided', () => {
+    const stack = new Stack({ a: 1 });
+    const clonedStack = stack.clone((e) => ({ ...e }));
+    expect(clonedStack.peek()).toStrictEqual(stack.peek());
   });
 });
