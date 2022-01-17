@@ -7,7 +7,7 @@ import QueueNode from './queue_node';
 /**
  * Implementation of the Queue Data Structure
  *
- * @template T type of the entries in the queue instance
+ * @template T type of the entries in the queue
  */
 class Queue<T> {
   /**
@@ -34,7 +34,7 @@ class Queue<T> {
   /**
    * Size of the queue
    *
-   * @type { number }
+   * @type { number } total count of nodes in the queue
    */
   get size(): number {
     return this.nodesInQueue;
@@ -43,7 +43,7 @@ class Queue<T> {
   /**
    * Checks if the queue is empty
    *
-   * @type {boolean} true, if queue has no elements, else, false
+   * @type {boolean} true, if queue has no entries, else, false
    */
   get isEmpty(): boolean {
     return this.nodesInQueue === 0;
