@@ -5,18 +5,21 @@
 import StackNode from './stack_node';
 
 /**
- * @classdesc This is a stack class
+ * Implementation of the Stack data structure
+ *
+ * @template T type of the entries in the stack
  */
 class Stack<T> {
   /**
    * Stores the size of the stack
    *
    * @private
-   * @returns { number } count of entries in stack
    */
   private countOfNodes: number = 0;
 
   /**
+   * Points to the top of the stack
+   *
    * @private
    */
   private head: StackNode<T> | null = null;
@@ -24,7 +27,7 @@ class Stack<T> {
   /**
    * Size of the stack
    *
-   * @type { number }
+   * @type { number } total count of nodes in the stack
    */
   get size(): number {
     return this.countOfNodes;
@@ -33,24 +36,24 @@ class Stack<T> {
   /**
    * Checks if the stack has any elements.
    *
-   * @type { boolean } true, if stack is empty, else, false
+   * @type { boolean } true, if stack has no entries, else, false
    */
   get isEmpty(): boolean {
     return this.countOfNodes === 0;
   }
 
   /**
-   * @function Object() { [native code] }
-   * @param entries
+   * @param { T[] } [entries=[]] Initialize the stack with these entries
    */
   constructor(...entries: T[]) {
     this.push(...entries);
   }
 
   /**
-   * Get the top-most entry from the stack. If stack is empty, returns null.
+   * Peek at the top of the stack
    *
-   * @returns { T | null } the top-entry element from the stack
+   * @returns { T | null } the top-entry element from the stack.
+   * If stack is empty, returns null
    */
   peek = (): T | null => {
     // stack is empty
@@ -61,9 +64,9 @@ class Stack<T> {
   };
 
   /**
-   * Adds single or multiple entries to the stack
+   * Push entries to the top of the stack
    *
-   * @param {T[]} [entries=[]] All entries to be added to the stack
+   * @param {T[]} [entries=[]] entries to be added to the stack
    * @returns { void }
    */
   push = (...entries: T[]): void => {
@@ -71,10 +74,10 @@ class Stack<T> {
   };
 
   /**
-   * Removes the top-most entry from the stack and returns its value.
-   * If the stack is empty, returns, null.
+   * Pop out the topmost entry from the stack
    *
-   * @returns { T | null } top element from the stack
+   * @returns { T | null } top element from the stack.
+   * If stack is empty, returns null
    */
   pop = (): T | null => {
     if (this.isEmpty) {
@@ -93,9 +96,9 @@ class Stack<T> {
   };
 
   /**
-   * Creates a new stack with order of entries in reverse order
+   * Reverse the stack
    *
-   * @returns { Stack<T> } new stack with reversed entries
+   * @returns { Stack<T> } new stack with entries in reverse order
    */
   reverse = (): Stack<T> => {
     return new Stack<T>(...this.toArray().reverse());
@@ -115,27 +118,55 @@ class Stack<T> {
       currentNode = currentNode.pointsTo;
     }
 
-    // Should return in reverse as it is converting to array from "top" of stack
+    // Should return in reverse as we want the order to be from bottom to top of the stack
     return result.reverse();
   };
 
   /**
-   * Clones the stack into new object
+   * Clones the stack instance
    *
-   * @param cloneEntry Callback to clone the entry. Useful if you want to deep-clone the stack.
+   * @param { function(function(T): T): Stack<T> } [cloneEntry] Callback to clone the entry.
    * By default, returns the same entry
-   * @returns { Stack<T> }
+   * @returns { Stack<T> } new stack instance with same set of entries
    */
   clone = (cloneEntry: (entry: T) => T = (entry) => entry): Stack<T> => {
-    const clonedStack = new Stack<T>();
-    clonedStack.push(...this.toArray().map(cloneEntry));
-    return clonedStack;
+    return this.map(cloneEntry);
   };
 
   /**
-   * @param entry
-   * @private
+   * Map every element of the stack to a different form.
+   *
+   * @template Q return type of the map function
+   * @param { function(T): Q } mapFn
+   * Map the stack elements to a new form
+   * @returns { Stack<T> } new stack with entries in the new form
+   */
+  map = <Q>(mapFn: (entry: T) => Q = (e) => e as unknown as Q): Stack<Q> => {
+    const newStack = new Stack<Q>();
+    newStack.push(...this.toArray().map(mapFn));
+    return newStack;
+  };
+
+  /**
+   * Filter out entries from the stack
+   *
+   * @param { function(function(T): boolean): Stack<T> } filterFn A predicate, which will
+   * be applied to all the entries. If returns true, the entry will be added to the new stack,
+   * else, will be skipped
+   * @returns { Stack<T> } new stack with entries that passed the predicate
+   */
+  filter = (filterFn: (entry: T) => boolean = () => true): Stack<T> => {
+    const filteredStack = new Stack<T>();
+    filteredStack.push(...this.toArray().filter(filterFn));
+    return filteredStack;
+  };
+
+  /**
    * Pushes one entry to the stack
+   *
+   * @private
+   * @param { T } entry new entry to be pushed to the top of the stack
+   * @returns { void }
    */
   private pushOne = (entry: T): void => {
     const newNode = new StackNode(entry);
