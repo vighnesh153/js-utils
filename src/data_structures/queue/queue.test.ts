@@ -41,15 +41,15 @@ describe('Data Structures > Queue tests', () => {
   });
 
   it('should allow to push multiple entries to the queue from right', () => {
-    const queue = new Queue(1);
-    queue.pushRight(2, 3);
+    const queue = new Queue();
+    queue.pushRight(1, 2, 3);
 
     expect(queue.toArray()).toStrictEqual([1, 2, 3]);
   });
 
   it('should allow to push multiple entries to the queue from left', () => {
-    const queue = new Queue(1);
-    queue.pushLeft(2, 3, 4);
+    const queue = new Queue();
+    queue.pushLeft(1, 2, 3, 4);
 
     expect(queue.toArray()).toStrictEqual([4, 3, 2, 1]);
   });
@@ -65,6 +65,12 @@ describe('Data Structures > Queue tests', () => {
     expect(queue.toArray()).toStrictEqual([1, 2, 3]);
   });
 
+  it('should return null if peekLeft is invoked on an empty Queue', () => {
+    const queue = new Queue();
+    const peekedElement = queue.peekLeft();
+    expect(peekedElement).toBeNull();
+  });
+
   it('should allow to peek an element from the right', () => {
     const queue = new Queue(1, 2, 3);
     expect(queue.peekRight()).toBe(3);
@@ -74,6 +80,12 @@ describe('Data Structures > Queue tests', () => {
     const queue = new Queue(1, 2, 3);
     queue.peekRight();
     expect(queue.toArray()).toStrictEqual([1, 2, 3]);
+  });
+
+  it('should return null if peekRight is invoked on an empty Queue', () => {
+    const queue = new Queue();
+    const peekedElement = queue.peekRight();
+    expect(peekedElement).toBeNull();
   });
 
   it('should return the popped element from the left', () => {
@@ -87,6 +99,18 @@ describe('Data Structures > Queue tests', () => {
     expect(queue.toArray()).toStrictEqual([2, 3]);
   });
 
+  it('should set the size of the queue to 0, if popLeft is invoked on a queue with 1 entry', () => {
+    const queue = new Queue(1);
+    queue.popLeft();
+    expect(queue.size).toBe(0);
+  });
+
+  it('should return null if popLeft is invoked on an empty queue', () => {
+    const queue = new Queue();
+    const poppedElement = queue.popLeft();
+    expect(poppedElement).toBeNull();
+  });
+
   it('should return the popped element from the right', () => {
     const queue = new Queue(1, 2, 3);
     expect(queue.popRight()).toBe(3);
@@ -96,6 +120,18 @@ describe('Data Structures > Queue tests', () => {
     const queue = new Queue(1, 2, 3);
     queue.popRight();
     expect(queue.toArray()).toStrictEqual([1, 2]);
+  });
+
+  it('should set the size of the queue to 0, if popRight is invoked on a queue with 1 entry', () => {
+    const queue = new Queue(1);
+    queue.popRight();
+    expect(queue.size).toBe(0);
+  });
+
+  it('should return null if popRight is invoked on an empty queue', () => {
+    const queue = new Queue();
+    const poppedElement = queue.popRight();
+    expect(poppedElement).toBeNull();
   });
 
   it('should allow to reverse a queue', () => {
@@ -138,5 +174,29 @@ describe('Data Structures > Queue tests', () => {
     const clonedQueue = queue.clone((e) => ({ ...e }));
 
     expect(clonedQueue.peekLeft()).toStrictEqual(queue.peekLeft());
+  });
+
+  it('should provide a method to map entries of the queue to different form', () => {
+    const queue = new Queue(1, 2, 3, 4);
+    const squares = queue.map((e) => e * e);
+    expect(squares.toArray()).toStrictEqual([1, 4, 9, 16]);
+  });
+
+  it('should return the same entries if map function is not provided', () => {
+    const queue = new Queue(1, 2, 3);
+    const newQueue = queue.map();
+    expect(newQueue.toArray()).toStrictEqual([1, 2, 3]);
+  });
+
+  it('should provide a method to filter out entries from a queue', () => {
+    const queue = new Queue(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+    const odds = queue.filter((entry) => entry % 2 === 1);
+    expect(odds.toArray()).toStrictEqual([1, 3, 5, 7, 9]);
+  });
+
+  it('should return all the entries if filterFn is not provided', () => {
+    const queue = new Queue(1, 2, 3);
+    const filteredQueue = queue.filter();
+    expect(filteredQueue.toArray()).toStrictEqual([1, 2, 3]);
   });
 });

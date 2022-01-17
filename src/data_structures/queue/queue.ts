@@ -1,5 +1,5 @@
 /**
- * @author Vighnesh Raut <rvighnes@amazon.com>
+ * @author Vighnesh Raut <me@vighnesh153.com>
  */
 
 import QueueNode from './queue_node';
@@ -117,7 +117,6 @@ class Queue<T> {
       return null;
     }
 
-    this.nodesInQueue -= 1;
     const toBeRemovedNode = this.head!;
 
     if (this.size === 1) {
@@ -128,6 +127,7 @@ class Queue<T> {
       this.head!.leftPointsTo = null;
     }
 
+    this.nodesInQueue -= 1;
     return toBeRemovedNode.value;
   };
 
@@ -142,7 +142,6 @@ class Queue<T> {
       return null;
     }
 
-    this.nodesInQueue -= 1;
     const toBeRemovedNode = this.tail!;
 
     if (this.size === 1) {
@@ -153,6 +152,7 @@ class Queue<T> {
       this.tail!.rightPointsTo = null;
     }
 
+    this.nodesInQueue -= 1;
     return toBeRemovedNode.value;
   };
 
@@ -194,9 +194,33 @@ class Queue<T> {
    * current instance
    */
   clone = (cloneEntry: (entry: T) => T = (entry) => entry): Queue<T> => {
-    const clonedQueue = new Queue<T>();
-    clonedQueue.pushRight(...this.toArray().map(cloneEntry));
-    return clonedQueue;
+    return this.map(cloneEntry);
+  };
+
+  /**
+   * Map the entries in the queue to a new form
+   *
+   * @template Q type of the new form of the entry
+   * @param { function(T): Q } mapFn map the entries in the queue to a new form
+   * @returns { Queue<Q> } new queue with the entries in new form
+   */
+  map = <Q>(mapFn: (entry: T) => Q = (e) => e as unknown as Q): Queue<Q> => {
+    const mappedQueue = new Queue<Q>();
+    mappedQueue.pushRight(...this.toArray().map(mapFn));
+    return mappedQueue;
+  };
+
+  /**
+   * Filter out the entries from the queue based on a predicate
+   *
+   * @param { function(T): boolean } filterFn predicate that accepts an entry as argument.
+   * If it returns true, the entry will be picked. Else, not.
+   * @returns { Queue<T> } new queue with the filtered entries
+   */
+  filter = (filterFn: (entry: T) => boolean = () => true): Queue<T> => {
+    const filteredQueue = new Queue<T>();
+    filteredQueue.pushRight(...this.toArray().filter(filterFn));
+    return filteredQueue;
   };
 
   /**
