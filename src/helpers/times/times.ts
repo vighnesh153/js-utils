@@ -5,11 +5,16 @@
 import isInteger from 'src/math/numbers/is_integer';
 import not from 'src/helpers/not';
 
-interface TimesReturnValue {
+/**
+ * Return type of the "times" function
+ *
+ * @interface
+ */
+export interface TimesReturnValue {
   /**
    * Invokes the callback "n" number of times
    *
-   * @template T
+   * @template T return type of the callback
    * @param {function(number): T} callback callback with
    * the iteration number as argument
    * @returns {T[]} returns the output of callback as array
@@ -24,7 +29,7 @@ interface TimesReturnValue {
  * @returns {TimesReturnValue} utilities to do things for
  * "n" number of times
  */
-const times = (n: number): TimesReturnValue => {
+export const times = (n: number): TimesReturnValue => {
   if (not(isInteger(n)) || n <= 0) {
     throw new Error(`Expected "n" to be a positive integer, found "${n}"`);
   }
@@ -39,5 +44,3 @@ const times = (n: number): TimesReturnValue => {
     },
   };
 };
-
-export default times;

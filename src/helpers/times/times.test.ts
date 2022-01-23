@@ -2,7 +2,7 @@
  * @author Vighnesh Raut <me@vighnesh153.com>
  */
 
-import times from './times';
+import { times } from './times';
 
 describe('Helpers > times tests', () => {
   it('should throw error if count is negative or non-integer', () => {
