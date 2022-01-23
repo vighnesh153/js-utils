@@ -18,6 +18,12 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: ['@typescript-eslint', 'jest', 'prettier', 'prefer-arrow', 'jsdoc'],
+  settings: {
+    'import/resolver': {
+      // this loads <rootdir>/tsconfig.json to eslint
+      typescript: {},
+    },
+  },
   rules: {
     'no-use-before-define': 'off',
     '@typescript-eslint/no-use-before-define': ['error'],
