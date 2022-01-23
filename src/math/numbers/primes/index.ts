@@ -2,6 +2,5 @@
  * @author Vighnesh Raut <me@vighnesh153.com>
  */
 
-import isPrime from './is_prime';
-
-export { isPrime };
+export { default as isPrime } from './is_prime';
+export * from './sieves';
