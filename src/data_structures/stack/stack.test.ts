@@ -1,7 +1,3 @@
-/**
- * @author Vighnesh Raut <me@vighnesh153.com>
- */
-
 import Stack from './stack';
 
 describe('Data Structures > Stack tests', () => {
@@ -33,10 +29,9 @@ describe('Data Structures > Stack tests', () => {
     expect(poppedElement).toBe(4);
   });
 
-  it('should return null if trying to pop from an empty stack', () => {
+  it('should throw if trying to pop from an empty stack', () => {
     const stack = new Stack();
-    const poppedElement = stack.pop();
-    expect(poppedElement).toBeNull();
+    expect(stack.pop).toThrowErrorMatchingInlineSnapshot(`"Stack is empty"`);
   });
 
   it('should allow to peek into the stack', () => {
@@ -51,10 +46,9 @@ describe('Data Structures > Stack tests', () => {
     expect(stack.toArray()).toStrictEqual([1, 2, 3]);
   });
 
-  it('should return null if peeking into an empty stack', () => {
+  it('should throw if peeking into an empty stack', () => {
     const stack = new Stack();
-    const peekedElement = stack.peek();
-    expect(peekedElement).toBeNull();
+    expect(stack.peek).toThrowErrorMatchingInlineSnapshot(`"Stack is empty"`);
   });
 
   it('should return the size of the stack as 0 if empty', () => {
