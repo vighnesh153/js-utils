@@ -2,10 +2,14 @@
   "out": "docs",
   "excludePrivate": true,
   "excludeInternal": true,
+  "excludeNotDocumented": true,
+  "excludeExternals": true,
+  "excludeProtected": true,
   "name": "js-utils",
   "entryPoints": "src/utils.ts",
   "entryPointStrategy": "Resolve",
   "includeVersion": true,
+  "tsconfig": "./tsconfig.json",
   "exclude": ["**/*+(.test|.spec|.e2e).ts"],
   "theme": "default"
 }

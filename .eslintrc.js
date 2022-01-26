@@ -10,14 +10,19 @@ module.exports = {
     'plugin:import/warnings',
     'plugin:import/typescript',
     'plugin:prettier/recommended',
-    'plugin:jsdoc/recommended',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 12,
     sourceType: 'module',
   },
-  plugins: ['@typescript-eslint', 'jest', 'prettier', 'prefer-arrow', 'jsdoc'],
+  plugins: [
+    '@typescript-eslint',
+    'jest',
+    'prettier',
+    'prefer-arrow',
+    'eslint-plugin-tsdoc',
+  ],
   settings: {
     'import/resolver': {
       // this loads <rootdir>/tsconfig.json to eslint
@@ -30,7 +35,7 @@ module.exports = {
     'import/extensions': 'off',
     'import/no-extraneous-dependencies': 'off',
     'no-plusplus': 'warn',
-    'import/prefer-default-export': 'warn',
+    'import/prefer-default-export': 'off',
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': 'error',
     'prefer-arrow/prefer-arrow-functions': [
@@ -41,9 +46,6 @@ module.exports = {
         classPropertiesAllowed: false,
       },
     ],
-    'jsdoc/require-param-type': 'error',
-    'jsdoc/require-returns-description': 'error',
-    'jsdoc/no-undefined-types': 'error',
-    'valid-jsdoc': 'error',
+    'tsdoc/syntax': 'error',
   },
 };
