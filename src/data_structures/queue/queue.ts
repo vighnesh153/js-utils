@@ -1,40 +1,28 @@
-/**
- * @author Vighnesh Raut <me@vighnesh153.com>
- */
-
 import QueueNode from './queue_node';
 
 /**
  * Implementation of the Queue Data Structure
  *
- * @template T type of the entries in the queue
+ * @typeParam T - type of the entries in the queue
  */
 class Queue<T> {
   /**
    * Count of nodes in the queue
-   *
-   * @private
    */
   private nodesInQueue: number = 0;
 
   /**
    * Left point of the queue
-   *
-   * @private
    */
   private head: QueueNode<T> | null = null;
 
   /**
    * Right point of the queue
-   *
-   * @private
    */
   private tail: QueueNode<T> | null = null;
 
   /**
    * Size of the queue
-   *
-   * @type { number } total count of nodes in the queue
    */
   get size(): number {
     return this.nodesInQueue;
@@ -42,15 +30,13 @@ class Queue<T> {
 
   /**
    * Checks if the queue is empty
-   *
-   * @type {boolean} true, if queue has no entries, else, false
    */
   get isEmpty(): boolean {
     return this.nodesInQueue === 0;
   }
 
   /**
-   * @param { ...T } [entries=[]] Initialize the queue with these entries
+   * @param entries - Initialize the queue with these entries
    */
   constructor(...entries: T[]) {
     this.pushRight(...entries);
@@ -59,12 +45,11 @@ class Queue<T> {
   /**
    * Peek at the left most entry of the queue
    *
-   * @returns { T | null } returns the leftmost value from queue,
-   * if queue has entries, else, null
+   * @throws Will throw an error if queue is empty
    */
   peekLeft = (): T | null => {
     if (this.isEmpty) {
-      return null;
+      throw new Error('Queue is empty');
     }
 
     return this.head!.value;
@@ -73,12 +58,11 @@ class Queue<T> {
   /**
    * Peek at the right most entry of the queue
    *
-   * @returns { T | null } returns the rightmost value from queue,
-   * if queue has entries, else, null
+   * @throws Will throw an error if queue is empty
    */
   peekRight = (): T | null => {
     if (this.isEmpty) {
-      return null;
+      throw new Error('Queue is empty');
     }
 
     return this.tail!.value;
@@ -87,9 +71,7 @@ class Queue<T> {
   /**
    * Add new values to the queue from the left
    *
-   * @param { ...T } [entries=[]] new values to be added from
-   * the left of the queue
-   * @returns { void }
+   * @param entries - new values to be added from the left of the queue
    */
   pushLeft = (...entries: T[]): void => {
     entries.forEach(this.pushLeftOne);
@@ -98,9 +80,7 @@ class Queue<T> {
   /**
    * Add new values to the queue from the right
    *
-   * @param { ...T } [entries=[]] new values to be added from
-   * the right of the queue
-   * @returns { void }
+   * @param entries - new values to be added from the right of the queue
    */
   pushRight = (...entries: T[]): void => {
     entries.forEach(this.pushRightOne);
@@ -109,12 +89,11 @@ class Queue<T> {
   /**
    * Pop an element from the leftmost side of the queue
    *
-   * @returns { T | null } leftmost entry from the queue.
-   * If queue is empty, returns null.
+   * @throws Will throw an error if queue is empty
    */
   popLeft = (): T | null => {
     if (this.isEmpty) {
-      return null;
+      throw new Error('Queue is empty');
     }
 
     const toBeRemovedNode = this.head!;
@@ -134,12 +113,11 @@ class Queue<T> {
   /**
    * Pop an element from the rightmost side of the queue
    *
-   * @returns { T | null } rightmost entry from the queue.
-   * If queue is empty, returns null.
+   * @throws Will throw an error if queue is empty
    */
   popRight = (): T | null => {
     if (this.isEmpty) {
-      return null;
+      throw new Error('Queue is empty');
     }
 
     const toBeRemovedNode = this.tail!;
@@ -158,9 +136,6 @@ class Queue<T> {
 
   /**
    * Creates a new Queue object with entries in reverse order
-   *
-   * @returns { Queue<T> } new Queue instance with entries in
-   * reverse order
    */
   reverse = (): Queue<T> => {
     const reversedQueue = new Queue<T>();
@@ -170,8 +145,6 @@ class Queue<T> {
 
   /**
    * Converts the queue to array. Order is from left to right.
-   *
-   * @returns { T[] } array of all the entries from the queue
    */
   toArray = (): T[] => {
     const result: T[] = [];
@@ -188,10 +161,8 @@ class Queue<T> {
   /**
    * Creates a new Queue object with the same entries in the current queue.
    *
-   * @param {function(T): T} [cloneEntry=((entry) => entry)] Callback to clone the entry.
-   * Useful if you want to deep-clone the queue. By default, returns the same entry.
-   * @returns { Queue<T> } new Queue instance with all the entries from
-   * current instance
+   * @param cloneEntry - Callback to clone the entry. Useful if you want
+   * to deep-clone the queue. By default, returns the same entry.
    */
   clone = (cloneEntry: (entry: T) => T = (entry) => entry): Queue<T> => {
     return this.map(cloneEntry);
@@ -200,9 +171,8 @@ class Queue<T> {
   /**
    * Map the entries in the queue to a new form
    *
-   * @template Q type of the new form of the entry
-   * @param { function(T): Q } mapFn map the entries in the queue to a new form
-   * @returns { Queue<Q> } new queue with the entries in new form
+   * @typeParam Q - type of the new form of the entry
+   * @param mapFn - map the entries in the queue to a new form
    */
   map = <Q>(mapFn: (entry: T) => Q = (e) => e as unknown as Q): Queue<Q> => {
     const mappedQueue = new Queue<Q>();
@@ -213,9 +183,8 @@ class Queue<T> {
   /**
    * Filter out the entries from the queue based on a predicate
    *
-   * @param { function(T): boolean } filterFn predicate that accepts an entry as argument.
+   * @param filterFn - predicate that accepts an entry as argument.
    * If it returns true, the entry will be picked. Else, not.
-   * @returns { Queue<T> } new queue with the filtered entries
    */
   filter = (filterFn: (entry: T) => boolean = () => true): Queue<T> => {
     const filteredQueue = new Queue<T>();
@@ -226,9 +195,7 @@ class Queue<T> {
   /**
    * Add one node to the left of the queue.
    *
-   * @private
-   * @param { T } entry value of the new node
-   * @returns { void }
+   * @param entry - value of the new node
    */
   private pushLeftOne = (entry: T): void => {
     if (this.createFirstNode(entry)) {
@@ -247,9 +214,7 @@ class Queue<T> {
   /**
    * Add one node to the right of the queue.
    *
-   * @private
-   * @param { T } entry value of the new node
-   * @returns { void }
+   * @param entry - value of the new node
    */
   private pushRightOne = (entry: T): void => {
     if (this.createFirstNode(entry)) {
@@ -269,9 +234,7 @@ class Queue<T> {
    * Creates the first node in the queue. Returns true if the node
    * is created, else returns false.
    *
-   * @private
-   * @param { T } entry value of the first node
-   * @returns { void }
+   * @param entry - value of the first node
    */
   private createFirstNode = (entry: T): boolean => {
     if (this.isEmpty) {

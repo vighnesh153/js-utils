@@ -1,9 +1,5 @@
 /**
- * @author Vighnesh Raut <me@vighnesh153.com>
- */
-
-/**
- * @ignore
+ * @internal
  */
 class QueueNode<T> {
   public leftPointsTo: QueueNode<T> | null = null;

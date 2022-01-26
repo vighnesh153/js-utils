@@ -1,7 +1,3 @@
-/**
- * @author Vighnesh Raut <me@vighnesh153.com>
- */
-
 import Queue from './queue';
 
 describe('Data Structures > Queue tests', () => {
@@ -65,10 +61,11 @@ describe('Data Structures > Queue tests', () => {
     expect(queue.toArray()).toStrictEqual([1, 2, 3]);
   });
 
-  it('should return null if peekLeft is invoked on an empty Queue', () => {
+  it('should throw if peekLeft is invoked on an empty Queue', () => {
     const queue = new Queue();
-    const peekedElement = queue.peekLeft();
-    expect(peekedElement).toBeNull();
+    expect(queue.peekLeft).toThrowErrorMatchingInlineSnapshot(
+      `"Queue is empty"`
+    );
   });
 
   it('should allow to peek an element from the right', () => {
@@ -82,10 +79,11 @@ describe('Data Structures > Queue tests', () => {
     expect(queue.toArray()).toStrictEqual([1, 2, 3]);
   });
 
-  it('should return null if peekRight is invoked on an empty Queue', () => {
+  it('should throw if peekRight is invoked on an empty Queue', () => {
     const queue = new Queue();
-    const peekedElement = queue.peekRight();
-    expect(peekedElement).toBeNull();
+    expect(queue.peekRight).toThrowErrorMatchingInlineSnapshot(
+      `"Queue is empty"`
+    );
   });
 
   it('should return the popped element from the left', () => {
@@ -105,10 +103,11 @@ describe('Data Structures > Queue tests', () => {
     expect(queue.size).toBe(0);
   });
 
-  it('should return null if popLeft is invoked on an empty queue', () => {
+  it('should throw if popLeft is invoked on an empty queue', () => {
     const queue = new Queue();
-    const poppedElement = queue.popLeft();
-    expect(poppedElement).toBeNull();
+    expect(queue.popLeft).toThrowErrorMatchingInlineSnapshot(
+      `"Queue is empty"`
+    );
   });
 
   it('should return the popped element from the right', () => {
@@ -128,10 +127,11 @@ describe('Data Structures > Queue tests', () => {
     expect(queue.size).toBe(0);
   });
 
-  it('should return null if popRight is invoked on an empty queue', () => {
+  it('should throw if popRight is invoked on an empty queue', () => {
     const queue = new Queue();
-    const poppedElement = queue.popRight();
-    expect(poppedElement).toBeNull();
+    expect(queue.popRight).toThrowErrorMatchingInlineSnapshot(
+      `"Queue is empty"`
+    );
   });
 
   it('should allow to reverse a queue', () => {
