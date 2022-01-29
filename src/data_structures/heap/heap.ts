@@ -52,7 +52,7 @@ export class Heap<T> {
   }
 
   constructor(
-    initialIterable: Iterable<T>,
+    initialIterable: Iterable<T> = [],
     comparatorFn: HeapComparatorFn<T> = defaultComparatorFn
   ) {
     this.items = Array.from(initialIterable);
@@ -86,6 +86,24 @@ export class Heap<T> {
       );
     }
     return times(count).do(this.popOne);
+  };
+
+  /**
+   * Returns the top "n" elements.
+   *
+   * @throws Will throw an error if count is not a positive integer
+   * @param count - Count of elements to be peeked
+   */
+  peek = (count = 1): T[] => {
+    if (count < 0 || not(isInteger(count))) {
+      throw new Error(
+        `Expected "count" to be a positive integer, found "${count}"`
+      );
+    }
+    const peekHowMany = count > this.size ? this.size : count;
+    const peekElements = this.pop(peekHowMany);
+    this.push(...peekElements);
+    return [...peekElements];
   };
 
   /**

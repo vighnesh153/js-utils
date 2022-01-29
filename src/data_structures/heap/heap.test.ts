@@ -61,6 +61,33 @@ describe('Data Structures > Heap tests', () => {
     expect(heap.toSortedArray()).toStrictEqual([1, 3, 4, 5, 6, 7]);
   });
 
+  it('should throw if trying to peek with negative count', () => {
+    const heap = new Heap([2, 4, 1, 6]);
+    expect(() => heap.peek(-2)).toThrowErrorMatchingInlineSnapshot(
+      `"Expected \\"count\\" to be a positive integer, found \\"-2\\""`
+    );
+  });
+
+  it('should throw if trying to peek with floating point count', () => {
+    const heap = new Heap([2, 4, 1, 6]);
+    expect(() => heap.peek(1.45)).toThrowErrorMatchingInlineSnapshot(
+      `"Expected \\"count\\" to be a positive integer, found \\"1.45\\""`
+    );
+  });
+
+  it('should allow to peek at top n elements', () => {
+    const heap = new Heap([4, 3, 5, 7, 1]);
+
+    expect(heap.peek(3)).toStrictEqual([1, 3, 4]);
+  });
+
+  it('should not modify the heap when peeking', () => {
+    const heap = new Heap([4, 3, 5, 7, 1]);
+
+    heap.peek(4);
+    expect(heap.toSortedArray()).toStrictEqual([1, 3, 4, 5, 7]);
+  });
+
   it('should use the custom comparatorFn', () => {
     const array = [4, 2, 6, 3, 9];
 
