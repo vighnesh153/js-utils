@@ -2,15 +2,32 @@ import { Heap } from 'src/data_structures/heap';
 import { isInteger } from 'src/math/numbers/is_integer';
 import { not } from 'src/helpers/not';
 
-interface CounterKeyCount {
+/**
+ * Object based repr of a key and its count
+ */
+export interface CounterKeyCount {
+  /**
+   * String repr of the item
+   */
   key: string;
+
+  /**
+   * Count of occurrences in the iterable
+   */
   count: number;
 }
 
+/**
+ * Key values pairs where key is the string repr of item
+ * and the value is the count of its occurrences in the iterable.
+ */
 export interface CounterItems {
   [key: string]: number;
 }
 
+/**
+ * Utility class to count the occurrences of items in an iterable
+ */
 export class Counter<T> {
   private readonly items: CounterItems = {};
 
