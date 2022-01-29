@@ -1,16 +1,11 @@
-/**
- * @author Vighnesh Raut <me@vighnesh153.com>
- */
-
 import { times } from 'src/helpers/times';
 
 /**
  * Generates all the primes before "limit" (inclusive)
  *
- * @param {number} limit upper limit for generating primes
- * @returns {number[]} array of primes before "limit"
+ * @param limit - upper limit for generating primes
  */
-const sieveOfEratosthenes = (limit: number): number[] => {
+export const sieveOfEratosthenes = (limit: number): number[] => {
   if (limit < 0) return [];
 
   const isIndexPrime = times(limit + 1).do(() => true);
@@ -35,5 +30,3 @@ const sieveOfEratosthenes = (limit: number): number[] => {
     .filter(({ isPrime }) => isPrime)
     .map(({ number }) => number);
 };
-
-export default sieveOfEratosthenes;

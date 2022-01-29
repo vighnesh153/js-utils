@@ -1,8 +1,4 @@
-/**
- * @author Vighnesh Raut <me@vighnesh153.com>
- */
-
-import sieveOfEratosthenes from './sieve_of_eratosthenes';
+import { sieveOfEratosthenes } from './sieve_of_eratosthenes';
 
 describe('Math > Numbers > Primes > Sieves > Sieve of Eratosthenes tests', () => {
   it('should return empty array if limit is negative number', () => {

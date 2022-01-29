@@ -1,5 +1,5 @@
-import isInteger from 'src/math/numbers/is_integer';
-import not from 'src/helpers/not';
+import { isInteger } from 'src/math/numbers/is_integer';
+import { not } from 'src/helpers/not';
 import { times } from 'src/helpers/times';
 
 /**

@@ -1,11 +1,11 @@
-import StackNode from './stack_node';
+import { StackNode } from './stack_node';
 
 /**
  * Implementation of the Stack data structure
  *
  * @typeParam T - type of the entries in the stack
  */
-class Stack<T> {
+export class Stack<T> {
   /**
    * Stores the size of the stack
    */
@@ -157,5 +157,3 @@ class Stack<T> {
     this.head = newNode;
   };
 }
-
-export default Stack;

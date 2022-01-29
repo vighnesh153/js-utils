@@ -1,8 +1,4 @@
-/**
- * @author Vighnesh Raut <me@vighnesh153.com>
- */
-
-import isOdd from './is_odd';
+import { isOdd } from './is_odd';
 
 describe('Math > isOdd tests', () => {
   it('should return false if number is even', () => {

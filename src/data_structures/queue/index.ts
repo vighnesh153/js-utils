@@ -1,3 +1,1 @@
-import Queue from './queue';
-
-export default Queue;
+export * from './queue';

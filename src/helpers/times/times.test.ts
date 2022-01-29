@@ -1,7 +1,3 @@
-/**
- * @author Vighnesh Raut <me@vighnesh153.com>
- */
-
 import { times } from './times';
 
 describe('Helpers > times tests', () => {

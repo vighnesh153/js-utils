@@ -1,8 +1,4 @@
-/**
- * @author Vighnesh Raut <me@vighnesh153.com>
- */
-
-import isNumber from './is_number';
+import { isNumber } from './is_number';
 
 describe('Math > Numbers > isNumber tests', () => {
   it('should return false if string is provided', () => {

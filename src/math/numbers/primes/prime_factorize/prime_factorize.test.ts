@@ -1,7 +1,3 @@
-/**
- * @author Vighnesh Raut <me@vighnesh153.com>
- */
-
 import { primeFactorize } from './prime_factorize';
 
 describe('Math > Numbers > Primes > Prime Factorization tests', () => {

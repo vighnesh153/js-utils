@@ -1,12 +1,12 @@
-import isInteger from 'src/math/numbers/is_integer';
-import not from 'src/helpers/not';
+import { isInteger } from 'src/math/numbers/is_integer';
+import { not } from 'src/helpers/not';
 
 /**
  * Checks if a number is prime
  *
  * @param n - number under test
  */
-const isPrime = (n: number): boolean => {
+export const isPrime = (n: number): boolean => {
   // If number is not an integer, it is not prime
   if (not(isInteger(n))) {
     return false;
@@ -44,5 +44,3 @@ const isPrime = (n: number): boolean => {
   // It all other cases, it is prime
   return true;
 };
-
-export default isPrime;

@@ -1,11 +1,11 @@
-import QueueNode from './queue_node';
+import { QueueNode } from './queue_node';
 
 /**
  * Implementation of the Queue Data Structure
  *
  * @typeParam T - type of the entries in the queue
  */
-class Queue<T> {
+export class Queue<T> {
   /**
    * Count of nodes in the queue
    */
@@ -247,5 +247,3 @@ class Queue<T> {
     return false;
   };
 }
-
-export default Queue;

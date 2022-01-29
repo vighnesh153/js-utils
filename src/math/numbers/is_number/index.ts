@@ -1,7 +1,1 @@
-/**
- * @author Vighnesh Raut <me@vighnesh153.com>
- */
-
-import isNumber from './is_number';
-
-export default isNumber;
+export * from './is_number';

@@ -1,4 +1,4 @@
-import Stack from './stack';
+import { Stack } from './stack';
 
 describe('Data Structures > Stack tests', () => {
   it('should allow to initialize the stack', () => {

@@ -1,6 +1,6 @@
 import { Heap } from 'src/data_structures/heap';
-import isInteger from 'src/math/numbers/is_integer';
-import not from 'src/helpers/not';
+import { isInteger } from 'src/math/numbers/is_integer';
+import { not } from 'src/helpers/not';
 
 interface CounterKeyCount {
   key: string;

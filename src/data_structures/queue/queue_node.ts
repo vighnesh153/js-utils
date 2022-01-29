@@ -1,7 +1,7 @@
 /**
  * @internal
  */
-class QueueNode<T> {
+export class QueueNode<T> {
   public leftPointsTo: QueueNode<T> | null = null;
 
   public rightPointsTo: QueueNode<T> | null = null;
@@ -12,5 +12,3 @@ class QueueNode<T> {
     this.value = value;
   }
 }
-
-export default QueueNode;

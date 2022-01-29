@@ -1,13 +1,9 @@
 /**
- * @author Vighnesh Raut <me@vighnesh153.com>
- */
-
-/**
  * Internal class to be used only in stack's class.
  *
  * @internal
  */
-class StackNode<T> {
+export class StackNode<T> {
   public entry: T;
 
   public pointsTo: StackNode<T> | null = null;
@@ -16,5 +12,3 @@ class StackNode<T> {
     this.entry = entry;
   }
 }
-
-export default StackNode;

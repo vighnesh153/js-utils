@@ -1,23 +1,15 @@
-/**
- * @author Vighnesh Raut <me@vighnesh153.com>
- */
-
-import isInteger from 'src/math/numbers/is_integer';
-import not from 'src/helpers/not';
+import { isInteger } from 'src/math/numbers/is_integer';
+import { not } from 'src/helpers/not';
 
 /**
  * Return type of the "times" function
- *
- * @interface
  */
 export interface TimesReturnValue {
   /**
    * Invokes the callback "n" number of times
    *
-   * @template T return type of the callback
-   * @param {function(number): T} callback callback with
-   * the iteration number as argument
-   * @returns {T[]} returns the output of callback as array
+   * @typeParam T - return type of the callback
+   * @param callback - callback with the iteration number as argument
    */
   do: <T>(cb: (count: number) => T) => T[];
 }
@@ -25,9 +17,7 @@ export interface TimesReturnValue {
 /**
  * Helper function that helps to do repeated stuff
  *
- * @param {number} n number of times
- * @returns {TimesReturnValue} utilities to do things for
- * "n" number of times
+ * @param n - number of times
  */
 export const times = (n: number): TimesReturnValue => {
   if (not(isInteger(n)) || n <= 0) {

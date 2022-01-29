@@ -1,14 +1,8 @@
 /**
- * @author Vighnesh Raut <me@vighnesh153.com>
- */
-
-/**
  * Prime factors of a number as key-value pairs.
  *
  * key: prime,
  * value: count of occurrences
- *
- * @interface
  */
 export interface PrimeFactors {
   [prime: number]: number;
@@ -17,8 +11,7 @@ export interface PrimeFactors {
 /**
  * Factors the provided number into prime factors
  *
- * @param {number} num number to prime factorize
- * @returns {PrimeFactors} object of all prime factors of the number
+ * @param num - number to prime factorize
  */
 export const primeFactorize = (num: number): PrimeFactors => {
   let n = num;

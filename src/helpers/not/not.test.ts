@@ -1,8 +1,4 @@
-/**
- * @author Vighnesh Raut <me@vighnesh153.com>
- */
-
-import not from './not';
+import { not } from './not';
 
 describe('Helpers > not tests', () => {
   it('should return true if null or undefined is provided', () => {
