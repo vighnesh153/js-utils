@@ -1,27 +1,16 @@
-/**
- * @author Vighnesh Raut <me@vighnesh153.com>
- */
-
 import isPrime from './is_prime';
 
 describe('Math > Numbers > Primes > isPrime tests', () => {
-  it('should return false for floating numbers', () => {
-    expect(isPrime(1.5)).toBe(false);
-  });
-
-  it('should return false for negative numbers', () => {
-    expect(isPrime(-2)).toBe(false);
-  });
-
-  it('should return false for 1', () => {
-    expect(isPrime(1)).toBe(false);
-  });
-
-  it('should return true for a prime', () => {
-    expect(isPrime(3)).toBe(true);
-  });
-
-  it('should return false for a composite number', () => {
-    expect(isPrime(42)).toBe(false);
+  test.each([
+    [1.5, false],
+    [-2, false],
+    [1, false],
+    [3, true],
+    [42, false],
+    [97, true],
+    [437, false],
+    [899, false],
+  ])('isPrime(%i)', (n, expected) => {
+    expect(isPrime(n)).toBe(expected);
   });
 });

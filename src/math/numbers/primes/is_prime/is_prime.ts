@@ -1,15 +1,10 @@
-/**
- * @author Vighnesh Raut <me@vighnesh153.com>
- */
-
 import isInteger from 'src/math/numbers/is_integer';
 import not from 'src/helpers/not';
 
 /**
  * Checks if a number is prime
  *
- * @param {number} n number under test
- * @returns {boolean} true, if number is prime, else, false
+ * @param n - number under test
  */
 const isPrime = (n: number): boolean => {
   // If number is not an integer, it is not prime
@@ -37,8 +32,12 @@ const isPrime = (n: number): boolean => {
   // instead of all numbers < n
   let i = 5;
   while (i * i <= n) {
+    // 6n - 1
     if (n % i === 0) return false;
+
+    // 6n + 1
     if (n % (i + 2) === 0) return false;
+
     i += 6;
   }
 
