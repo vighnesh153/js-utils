@@ -1,8 +1,40 @@
+/**
+ * Date comparison helpers
+ */
 export interface DateComparisonHelpers {
+  /**
+   * Checks if one date is the same as the other
+   *
+   * @param compareWithDate - Date to compare with
+   */
   sameAs: (compareWithDate: Date) => boolean;
+
+  /**
+   * Checks if one date is before the other
+   *
+   * @param compareWithDate - Date to compare with
+   */
   before: (compareWithDate: Date) => boolean;
+
+  /**
+   * Checks if one date is on or before the other
+   *
+   * @param compareWithDate - Date to compare with
+   */
   onOrBefore: (compareWithDate: Date) => boolean;
+
+  /**
+   * Checks if one date is after the other
+   *
+   * @param compareWithDate - Date to compare with
+   */
   after: (compareWithDate: Date) => boolean;
+
+  /**
+   * Checks if one date is on or after the other
+   *
+   * @param compareWithDate - Date to compare with
+   */
   onOrAfter: (compareWithDate: Date) => boolean;
 }
 
