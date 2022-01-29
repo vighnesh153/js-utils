@@ -81,6 +81,12 @@ describe('Data Structures > Heap tests', () => {
     expect(heap.peek(3)).toStrictEqual([1, 3, 4]);
   });
 
+  test('if peeking more than size of heap, it should return all elements', () => {
+    const heap = new Heap([4, 3, 5, 7, 1]);
+
+    expect(heap.peek(100)).toStrictEqual([1, 3, 4, 5, 7]);
+  });
+
   it('should not modify the heap when peeking', () => {
     const heap = new Heap([4, 3, 5, 7, 1]);
 
