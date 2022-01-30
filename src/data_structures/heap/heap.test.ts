@@ -95,13 +95,10 @@ describe('Data Structures > Heap tests', () => {
   });
 
   it('should use the custom comparatorFn', () => {
-    const array = [4, 2, 6, 3, 9];
+    const array = [1, 4, 2, 3];
 
     // Max-heap simulation
-    const heap = new Heap(array, (el1, el2) => ({
-      parent: el1 <= el2 ? el2 : el1,
-      child: el1 <= el2 ? el1 : el2,
-    }));
+    const heap = new Heap(array, (el1, el2) => (el1 > el2 ? -1 : 1));
 
     // It should be sorted in descending order
     expect(heap.toSortedArray()).toStrictEqual(array.sort((a, b) => b - a));

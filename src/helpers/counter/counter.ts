@@ -124,22 +124,14 @@ export class Counter<T> {
     }));
 
     // Needed for getting mostCommon elements
-    const maxHeap = new Heap<CounterKeyCount>(keyCounts, (el1, el2) => {
-      const isEl1Parent = el1.count > el2.count;
-      return {
-        parent: isEl1Parent ? el1 : el2,
-        child: isEl1Parent ? el2 : el1,
-      };
-    });
+    const maxHeap = new Heap<CounterKeyCount>(keyCounts, (el1, el2) =>
+      el1.count > el2.count ? -1 : 1
+    );
 
     // Needed for getting leastCommon elements
-    const minHeap = new Heap<CounterKeyCount>(keyCounts, (el1, el2) => {
-      const isEl1Parent = el1.count < el2.count;
-      return {
-        parent: isEl1Parent ? el1 : el2,
-        child: isEl1Parent ? el2 : el1,
-      };
-    });
+    const minHeap = new Heap<CounterKeyCount>(keyCounts, (el1, el2) =>
+      el1.count < el2.count ? -1 : 1
+    );
 
     return { maxHeap, minHeap };
   };

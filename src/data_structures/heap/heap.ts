@@ -3,12 +3,11 @@ import { not } from 'src/helpers/not';
 import { times } from 'src/helpers/times';
 
 /**
- * Type of the comparator.
+ * Type of the comparator. "-1", if element-1 gets more priority,
+ * "0", if both elements have same priority, "1", if element-2 gets
+ * more priority
  */
-export interface HeapComparator<T> {
-  parent: T;
-  child: T;
-}
+export type HeapComparator = -1 | 0 | 1;
 
 /**
  * Type of the comparator function. In the return-type,
@@ -17,15 +16,10 @@ export interface HeapComparator<T> {
  *
  * @typeParam T - type of entry
  */
-export type HeapComparatorFn<T> = (el1: T, el2: T) => HeapComparator<T>;
+export type HeapComparatorFn<T> = (el1: T, el2: T) => HeapComparator;
 
-const defaultComparatorFn = <T>(el1: T, el2: T): HeapComparator<T> => {
-  const isElement1Parent = el1 < el2;
-  return {
-    parent: isElement1Parent ? el1 : el2,
-    child: isElement1Parent ? el2 : el1,
-  };
-};
+const defaultComparatorFn = <T>(el1: T, el2: T): HeapComparator =>
+  el1 <= el2 ? -1 : 1;
 
 /**
  * Heap implementation
@@ -174,11 +168,18 @@ export class Heap<T> {
       const parentEl = this.items[parentIndex];
 
       // Compare them and see which needs to go up and which needs to go down
-      const compare = this.comparatorFn(currentEl, parentEl);
+      const compareResult = this.comparatorFn(currentEl, parentEl);
 
       // Update the items array based on the result above
-      this.items[parentIndex] = compare.parent;
-      this.items[currentIndex] = compare.child;
+      if (compareResult === -1) {
+        // CurrentEl gets more priority
+        this.items[parentIndex] = currentEl;
+        this.items[currentIndex] = parentEl;
+      } else {
+        // ParentEl gets more priority
+        this.items[parentIndex] = parentEl;
+        this.items[currentIndex] = currentEl;
+      }
 
       // Update the indices
       nextIndices = calculateNextIndices(parentIndex);
@@ -204,8 +205,9 @@ export class Heap<T> {
 
       // If right child index is in bounds
       if (rightChildIndex < this.items.length) {
-        const compare = this.comparatorFn(leftChild, rightChild);
-        if (compare.parent === rightChild) {
+        const compareResult = this.comparatorFn(leftChild, rightChild);
+        if (compareResult === 1) {
+          // Right child has more priority
           newChildIndex = rightChildIndex;
         }
       }
@@ -227,11 +229,18 @@ export class Heap<T> {
       const leftChildEl = this.items[childIndex];
 
       // Compare them and see which needs to go up and which needs to go down
-      const compare = this.comparatorFn(currentEl, leftChildEl);
+      const compareResult = this.comparatorFn(currentEl, leftChildEl);
 
       // Update the items array based on the result above
-      this.items[currentIndex] = compare.parent;
-      this.items[childIndex] = compare.child;
+      if (compareResult === -1) {
+        // CurrentEl gets more priority
+        this.items[currentIndex] = currentEl;
+        this.items[childIndex] = leftChildEl;
+      } else {
+        // ParentEl gets more priority
+        this.items[currentIndex] = leftChildEl;
+        this.items[childIndex] = currentEl;
+      }
 
       // Update the indices
       nextIndices = calculateNextIndices(childIndex);
