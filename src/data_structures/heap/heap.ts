@@ -3,11 +3,12 @@ import { not } from 'src/helpers/not';
 import { times } from 'src/helpers/times';
 
 /**
- * Type of the comparator. "-1", if element-1 gets more priority,
- * "0", if both elements have same priority, "1", if element-2 gets
- * more priority
+ * Comparison result between 2 elements. Returned result's meaning: <br>
+ * Negative: element-1 gets more priority <br>
+ * Zero: element-1 and element-2 have same priority <br>
+ * Positive: element-2 gets more priority <br>
  */
-export type HeapComparator = -1 | 0 | 1;
+export type HeapComparator = number;
 
 /**
  * Type of the comparator function. In the return-type,
@@ -171,7 +172,7 @@ export class Heap<T> {
       const compareResult = this.comparatorFn(currentEl, parentEl);
 
       // Update the items array based on the result above
-      if (compareResult === -1) {
+      if (compareResult < 0) {
         // CurrentEl gets more priority
         this.items[parentIndex] = currentEl;
         this.items[currentIndex] = parentEl;
@@ -206,7 +207,7 @@ export class Heap<T> {
       // If right child index is in bounds
       if (rightChildIndex < this.items.length) {
         const compareResult = this.comparatorFn(leftChild, rightChild);
-        if (compareResult === 1) {
+        if (compareResult > 0) {
           // Right child has more priority
           newChildIndex = rightChildIndex;
         }
@@ -232,7 +233,7 @@ export class Heap<T> {
       const compareResult = this.comparatorFn(currentEl, leftChildEl);
 
       // Update the items array based on the result above
-      if (compareResult === -1) {
+      if (compareResult < 0) {
         // CurrentEl gets more priority
         this.items[currentIndex] = currentEl;
         this.items[childIndex] = leftChildEl;
