@@ -17,6 +17,15 @@ describe('Helpers > Counter tests', () => {
     expect(counter.countFor(2)).toBe(3);
   });
 
+  it('should support counting of booleans', () => {
+    const counter = new Counter([true, false, false, false, true]);
+
+    expect(counter.getItems()).toStrictEqual({
+      true: 2,
+      false: 3,
+    });
+  });
+
   it('should allow to return the most common entries and their count', () => {
     const counter = new Counter([1, 2, 3, 1, 2, 2, 1, 2, 5]);
 
