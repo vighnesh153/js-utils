@@ -40,21 +40,13 @@ describe('Helpers > Array Utils > Comparison tests', () => {
       [{ age: 21 }, { age: 23 }],
       [{ age: 21 }, { age: 25 }],
       true,
-      (el1: { age: number }, el2: { age: number }) => ({
-        isEl1Less: el1.age < el2.age,
-        areEl1AndEl2Same: el1.age === el2.age,
-        isEl1Greater: el1.age > el2.age,
-      }),
+      (el1: { age: number }, el2: { age: number }) => el1.age - el2.age,
     ],
     [
       [{ age: 21 }, { age: 23 }],
       [{ age: 21 }, { age: 22 }],
       false,
-      (el1: { age: number }, el2: { age: number }) => ({
-        isEl1Less: el1.age < el2.age,
-        areEl1AndEl2Same: el1.age === el2.age,
-        isEl1Greater: el1.age > el2.age,
-      }),
+      (el1: { age: number }, el2: { age: number }) => el1.age - el2.age,
     ],
   ])(
     'lessThan(complex arrays): %j lessThan %j ? %j',

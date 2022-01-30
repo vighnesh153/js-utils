@@ -1,25 +1,12 @@
 import { not } from 'src/helpers/not';
-import { Counter } from 'src/helpers/counter';
 
 /**
- * Comparison result between 2 elements
+ * Comparison result between 2 elements. Returned result's meaning: <br>
+ * Negative: element-1 lessThan element-2 <br>
+ * Zero: element-1 equals element-2 <br>
+ * Positive: element-1 greaterThan element-2 <br>
  */
-export interface ArrayUtilsCompare {
-  /**
-   * true if "el1" is less than "el2"
-   */
-  isEl1Less?: boolean;
-
-  /**
-   * true if "el1" is equal to "el2"
-   */
-  areEl1AndEl2Same?: boolean;
-
-  /**
-   * true if "el1" is greater than "el2"
-   */
-  isEl1Greater?: boolean;
-}
+export type ArrayUtilsCompare = number;
 
 /**
  * A function which compares 2 elements and returns the
@@ -103,25 +90,10 @@ export interface ArrayComparisonHelpers<T> {
 
 const defaultCompareFn = <T, Q>(el1: T, el2: Q): ArrayUtilsCompare => {
   // @ts-ignore
-  if ((el1 as unknown) < el2) return { isEl1Less: true };
+  if ((el1 as unknown) < el2) return -1;
   // @ts-ignore
-  if ((el1 as unknown) > el2) return { isEl1Greater: true };
-  return { areEl1AndEl2Same: true };
-};
-
-const validateCompare = (compare: ArrayUtilsCompare): void => {
-  const { isEl1Less, areEl1AndEl2Same, isEl1Greater } = compare;
-  const booleanCounter = new Counter([
-    isEl1Less,
-    areEl1AndEl2Same,
-    isEl1Greater,
-  ]);
-  if (booleanCounter.countFor(true) !== 1) {
-    throw new Error(
-      'Compare function should return one of "{ isEl1Less: true }" ' +
-        'or "{ areEl1AndEl2Same: true }" or "{ isEl1Greater: true }"'
-    );
-  }
+  if ((el1 as unknown) > el2) return 1;
+  return 0;
 };
 
 /**
@@ -169,11 +141,10 @@ export const is = <T>(array: T[]): ArrayComparisonHelpers<T> => {
       const el1 = array[i];
       const el2 = otherArray[j];
 
-      const { isEl1Less, areEl1AndEl2Same, isEl1Greater } = compare(el1, el2);
-      validateCompare({ isEl1Less, areEl1AndEl2Same, isEl1Greater });
+      const compareResult = compare(el1, el2);
 
-      if (isEl1Less) return true;
-      if (isEl1Greater) return false;
+      if (compareResult < 0) return true;
+      if (compareResult > 0) return false;
 
       // Both el1 and el2 are same. Check at next pair of indices
       i += 1;
@@ -193,11 +164,7 @@ export const is = <T>(array: T[]): ArrayComparisonHelpers<T> => {
     if (lessThan(otherArray, compare)) {
       return true;
     }
-    return equalsTo(otherArray, (el1, el2) => {
-      const compareResult = compare(el1, el2);
-      validateCompare(compareResult);
-      return Boolean(compareResult.areEl1AndEl2Same);
-    });
+    return equalsTo(otherArray, (el1, el2) => compare(el1, el2) === 0);
   };
 
   const greaterThan = <Q>(
