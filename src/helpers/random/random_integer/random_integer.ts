@@ -1,17 +1,5 @@
-import { not } from 'src/helpers/not';
-import { isInteger } from 'src/math/numbers/is_integer';
-
-const validateStart = (start: number) => {
-  if (not(isInteger(start))) {
-    throw new Error(`Expected "start" to be integer, found "${start}"`);
-  }
-};
-
-const validateEnd = (end: number) => {
-  if (not(isInteger(end))) {
-    throw new Error(`Expected "end" to be integer, found "${end}"`);
-  }
-};
+import { isInteger, not } from '@utils';
+import { throwIfNotInteger } from 'src/_internal_validators';
 
 const validateStep = (step: number, start: number, end: number) => {
   if (not(isInteger(step)) || step === 0) {
@@ -52,8 +40,8 @@ export const randomInteger = (
   end: number,
   step: number
 ): number => {
-  validateStart(start);
-  validateEnd(end);
+  throwIfNotInteger(start, 'start');
+  throwIfNotInteger(end, 'end');
   validateStep(step, start, end);
 
   const count = Math.floor((end - start) / step) + 1;

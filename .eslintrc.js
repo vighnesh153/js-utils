@@ -47,5 +47,6 @@ module.exports = {
       },
     ],
     'tsdoc/syntax': 'error',
+    'import/no-cycle': 'off',
   },
 };
