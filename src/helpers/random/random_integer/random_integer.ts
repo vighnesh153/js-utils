@@ -31,6 +31,22 @@ const validateStep = (step: number, start: number, end: number) => {
   }
 };
 
+/**
+ * Returns a random integer between start and end
+ *
+ * <strong>Note</strong>: This is not cryptographically strong
+ * and shouldn't be used in systems that demand high security.
+ *
+ * @param start - beginning of the range
+ * @param end - end of the range
+ * @param step - increment or decrement for the numbers in range
+ *
+ * @throws Expected "start" to be integer
+ * @throws Expected "end" to be integer
+ * @throws Expected "step" to be <strong>non-zero</strong> integer
+ * @throws Expected "step" to be positive if "start" is less than "end"
+ * @throws Expected "step" to be negative if "start" is greater than "end"
+ */
 export const randomInteger = (
   start: number,
   end: number,
