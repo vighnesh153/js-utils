@@ -1,4 +1,4 @@
-import { isOdd } from './is_odd';
+import { isOdd } from '@utils';
 
 describe('Math > isOdd tests', () => {
   it('should return false if number is even', () => {

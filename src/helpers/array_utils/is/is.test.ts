@@ -4,6 +4,7 @@ describe('Helpers > Array Utils > Comparison tests', () => {
   test.each([
     [[1, 2, 3], [1, 2, 3], true],
     [[1, 2, 5], [1, 2, 4], false],
+    [[1, 2, 5], [1, 2, 5, 9], false],
   ])('equalsTo(simple arrays): %j equals %j ? %j', (arr1, arr2, expected) => {
     expect(is(arr1).equalsTo(arr2)).toBe(expected);
   });

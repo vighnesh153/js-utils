@@ -1,4 +1,4 @@
-import { binarySearchRightmostOccurrence } from './binary_search_rightmost';
+import { binarySearchRightmostOccurrence } from '@utils';
 
 describe('Algorithms > Binary Search Rightmost occurrence tests', () => {
   test.each([

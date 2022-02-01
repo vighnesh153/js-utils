@@ -1,4 +1,4 @@
-import { times } from 'src/helpers/times';
+import { times } from '@utils';
 
 /**
  * Generates all the primes before "limit" (inclusive)

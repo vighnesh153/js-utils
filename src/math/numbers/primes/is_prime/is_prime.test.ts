@@ -1,4 +1,4 @@
-import { isPrime } from './is_prime';
+import { isPrime } from '@utils';
 
 describe('Math > Numbers > Primes > isPrime tests', () => {
   test.each([

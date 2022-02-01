@@ -1,4 +1,4 @@
-import { isInteger } from './is_integer';
+import { isInteger } from '@utils';
 
 describe('Math > Numbers > isInteger tests', () => {
   test.each([

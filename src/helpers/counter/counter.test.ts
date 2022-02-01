@@ -1,4 +1,4 @@
-import { Counter } from './counter';
+import { Counter } from '@utils';
 
 describe('Helpers > Counter tests', () => {
   it('should allow to return unique keys', () => {

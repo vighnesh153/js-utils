@@ -1,4 +1,4 @@
-import { binarySearch } from './binary_search';
+import { binarySearch } from '@utils';
 
 describe('Algorithms > Binary Search tests', () => {
   test.each([

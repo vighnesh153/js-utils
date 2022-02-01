@@ -1,4 +1,4 @@
-import { sieveOfEratosthenes } from './sieve_of_eratosthenes';
+import { sieveOfEratosthenes } from '@utils';
 
 describe('Math > Numbers > Primes > Sieves > Sieve of Eratosthenes tests', () => {
   it('should return empty array if limit is negative number', () => {

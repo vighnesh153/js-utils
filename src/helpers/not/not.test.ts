@@ -1,4 +1,4 @@
-import { not } from './not';
+import { not } from '@utils';
 
 describe('Helpers > not tests', () => {
   it('should return true if null or undefined is provided', () => {

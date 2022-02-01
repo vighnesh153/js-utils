@@ -1,5 +1,4 @@
-import { isInteger } from 'src/math/numbers/is_integer';
-import { not } from 'src/helpers/not';
+import { isInteger, not } from '@utils';
 
 /**
  * Checks if a number is prime

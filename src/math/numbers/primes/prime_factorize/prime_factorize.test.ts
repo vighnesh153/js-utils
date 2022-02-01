@@ -1,4 +1,4 @@
-import { primeFactorize } from './prime_factorize';
+import { primeFactorize } from '@utils';
 
 describe('Math > Numbers > Primes > Prime Factorization tests', () => {
   it('should return empty object for number less than 1', () => {

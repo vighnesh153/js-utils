@@ -1,4 +1,4 @@
-import { Heap } from './heap';
+import { Heap } from '@utils';
 
 describe('Data Structures > Heap tests', () => {
   it('should return the correct size of the heap', () => {

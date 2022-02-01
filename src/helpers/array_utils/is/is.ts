@@ -1,4 +1,4 @@
-import { not } from 'src/helpers/not';
+import { not } from '@utils';
 
 /**
  * Comparison result between 2 elements. Returned result's meaning: <br>

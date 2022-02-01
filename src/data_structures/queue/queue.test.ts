@@ -1,4 +1,4 @@
-import { Queue } from './queue';
+import { Queue } from '@utils';
 
 describe('Data Structures > Queue tests', () => {
   it('should allow to initialize', () => {

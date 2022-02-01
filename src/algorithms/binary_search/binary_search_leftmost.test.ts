@@ -1,4 +1,4 @@
-import { binarySearchLeftmostOccurrence } from './binary_search_leftmost';
+import { binarySearchLeftmostOccurrence } from '@utils';
 
 describe('Algorithms > Binary Search Leftmost occurrence tests', () => {
   test.each([

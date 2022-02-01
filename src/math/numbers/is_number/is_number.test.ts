@@ -1,4 +1,4 @@
-import { isNumber } from './is_number';
+import { isNumber } from '@utils';
 
 describe('Math > Numbers > isNumber tests', () => {
   it('should return false if string is provided', () => {

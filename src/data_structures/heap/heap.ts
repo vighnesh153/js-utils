@@ -1,6 +1,4 @@
-import { isInteger } from 'src/math/numbers/is_integer';
-import { not } from 'src/helpers/not';
-import { times } from 'src/helpers/times';
+import { isInteger, not, times } from '@utils';
 
 /**
  * Comparison result between 2 elements. Returned result's meaning: <br>
