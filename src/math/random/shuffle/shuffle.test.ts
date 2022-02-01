@@ -1,6 +1,6 @@
 import { shuffle } from '@utils';
 
-describe('Helpers > Random > shuffle tests', () => {
+describe('Math > Random > shuffle tests', () => {
   it('should shuffle a number array', () => {
     const initialArray = [1, 2, 3, 4, 5];
     const shuffled = shuffle(initialArray);

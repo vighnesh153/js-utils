@@ -35,11 +35,7 @@ const validateStep = (step: number, start: number, end: number) => {
  * @throws Expected "step" to be positive if "start" is less than "end"
  * @throws Expected "step" to be negative if "start" is greater than "end"
  */
-export const randomInteger = (
-  start: number,
-  end: number,
-  step: number
-): number => {
+export const randomInteger = (start: number, end: number, step = 1): number => {
   throwIfNotInteger(start, 'start');
   throwIfNotInteger(end, 'end');
   validateStep(step, start, end);

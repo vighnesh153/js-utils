@@ -1,4 +1,4 @@
-import { randomInteger } from './random_integer';
+import { randomInteger } from '@utils';
 
 describe('Math > Random > randomInteger tests', () => {
   it('should throw if start is not an integer', () => {
