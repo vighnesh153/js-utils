@@ -1,4 +1,5 @@
-import { Heap, isInteger, not } from '@utils';
+import { Heap } from '@utils';
+import { Validators } from 'src/_internal_validators';
 
 /**
  * Object based repr of a key and its count
@@ -66,11 +67,7 @@ export class Counter<T> {
    * @param count - how many elements
    */
   mostCommon = (count = 1): CounterKeyCount[] => {
-    if (not(isInteger(count)) || count <= 0) {
-      throw new Error(
-        `Expected "count" to be a positive integer, found "${count}"`
-      );
-    }
+    Validators.validatePositiveInteger(count, 'count');
     return this.maxHeap.peek(count);
   };
 
@@ -83,11 +80,7 @@ export class Counter<T> {
    * @param count - how many elements
    */
   leastCommon = (count = 1): CounterKeyCount[] => {
-    if (not(isInteger(count)) || count <= 0) {
-      throw new Error(
-        `Expected "count" to be a positive integer, found "${count}"`
-      );
-    }
+    Validators.validatePositiveInteger(count, 'count');
     return this.minHeap.peek(count);
   };
 

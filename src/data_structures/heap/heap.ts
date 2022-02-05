@@ -1,4 +1,5 @@
-import { isInteger, not, times } from '@utils';
+import { times } from '@utils';
+import { Validators } from 'src/_internal_validators';
 
 /**
  * Comparison result between 2 elements. Returned result's meaning: <br>
@@ -73,11 +74,7 @@ export class Heap<T> {
    * @param count - Count of elements to be popped
    */
   pop = (count = 1): T[] => {
-    if (count < 0 || not(isInteger(count))) {
-      throw new Error(
-        `Expected "count" to be a positive integer, found "${count}"`
-      );
-    }
+    Validators.validatePositiveInteger(count, 'count');
     return times(count).do(this.popOne);
   };
 
@@ -88,11 +85,7 @@ export class Heap<T> {
    * @param count - Count of elements to be peeked
    */
   peek = (count = 1): T[] => {
-    if (count < 0 || not(isInteger(count))) {
-      throw new Error(
-        `Expected "count" to be a positive integer, found "${count}"`
-      );
-    }
+    Validators.validatePositiveInteger(count, 'count');
     const peekHowMany = count > this.size ? this.size : count;
     const peekElements = this.pop(peekHowMany);
     this.push(...peekElements);

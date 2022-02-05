@@ -1,4 +1,4 @@
-import { isInteger, not } from '@utils';
+import { Validators } from 'src/_internal_validators';
 
 /**
  * Return type of the "times" function
@@ -19,9 +19,7 @@ export interface TimesReturnValue {
  * @param n - number of times
  */
 export const times = (n: number): TimesReturnValue => {
-  if (not(isInteger(n)) || n <= 0) {
-    throw new Error(`Expected "n" to be a positive integer, found "${n}"`);
-  }
+  Validators.validatePositiveInteger(n, 'n');
 
   return {
     do: <T>(callback: (count: number) => T): T[] => {

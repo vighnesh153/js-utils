@@ -1,12 +1,7 @@
-import { isInteger, not } from '@utils';
-import { throwIfNotInteger } from 'src/_internal_validators';
+import { Validators } from 'src/_internal_validators';
 
 const validateStep = (step: number, start: number, end: number) => {
-  if (not(isInteger(step)) || step === 0) {
-    throw new Error(
-      `Expected "step" to be a non-zero integer, found "${step}"`
-    );
-  }
+  Validators.validateNonZeroInteger(step, 'step');
   if (start < end && step < 0) {
     throw new Error(
       `Expected "step" to be positive if "start" is less than "end"`
@@ -36,8 +31,8 @@ const validateStep = (step: number, start: number, end: number) => {
  * @throws Expected "step" to be negative if "start" is greater than "end"
  */
 export const randomInteger = (start: number, end: number, step = 1): number => {
-  throwIfNotInteger(start, 'start');
-  throwIfNotInteger(end, 'end');
+  Validators.validateInteger(start, 'start');
+  Validators.validateInteger(end, 'end');
   validateStep(step, start, end);
 
   const count = Math.floor((end - start) / step) + 1;
