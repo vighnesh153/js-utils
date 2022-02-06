@@ -1,6 +1,6 @@
 {
   "name": "@vighnesh153/utils",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "description": "Some utility tools for javascript (types included).",
   "main": "./dist/utils.js",
   "umd-file": "./dist/utils.umd.js",
@@ -24,8 +24,7 @@
     "lint-staged": "lint-staged",
     "git:rebase": "git pull --rebase origin main",
     "release": "npm run git:rebase && npm test && npm run build && standard-version && git push --follow-tags && npm publish --access=public",
-    "lint": "eslint src/*",
-    "semantic-release": "semantic-release"
+    "lint": "eslint src/*"
   },
   "files": [
     "dist"
