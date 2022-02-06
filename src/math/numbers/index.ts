@@ -5,3 +5,4 @@ export * from './is_number';
 export * from './primes';
 export * from './factorial';
 export * from './gcd';
+export * from './lcm';
