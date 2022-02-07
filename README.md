@@ -14,3 +14,17 @@ A utility tools library, for Javascript (types included).
   hosted on Vercel.
 * The library also has type definition files built in.
 * Supports `es`, `cjs`, and `umd` module system.
+
+### Import
+
+1. In ES modules
+
+```ts
+import * as utils from "@vighnesh153/utils";
+```
+
+2. In CJS modules
+
+```js
+const utils = require("@vighnesh153/utils/dist/utils.cjs")
+```
