@@ -28,3 +28,15 @@ import * as utils from "@vighnesh153/utils";
 ```js
 const utils = require("@vighnesh153/utils/dist/utils.cjs")
 ```
+
+3. As UMD
+
+```html
+
+<script src="https://unpkg.com/@vighnesh153/utils/dist/utils.umd.js"></script>
+
+<script type="application/javascript">
+    console.log(Utils.sieveOfEratosthenes(10))
+    // Outputs:- [2, 3, 5, 7]
+</script>
+```
