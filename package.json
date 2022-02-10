@@ -34,9 +34,17 @@
     "url": "git@vighnesh153:vighnesh153/py-utils.git"
   },
   "keywords": [
+    "data structures",
+    "algorithms",
+    "prime numbers",
+    "math",
+    "factorial",
+    "counter",
+    "datetime",
+    "range",
+    "constants",
     "utils",
-    "tools",
-    "python"
+    "tools"
   ],
   "author": "Vighnesh Raut",
   "license": "MIT",
