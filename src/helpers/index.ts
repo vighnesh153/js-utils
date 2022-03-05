@@ -6,3 +6,4 @@ export * from './array_utils';
 export * from './range';
 export * from './memoize';
 export * from './deep_freeze';
+export * from './debounce';
