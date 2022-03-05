@@ -5,4 +5,5 @@ module.exports = {
   arrowParens: 'always',
   proseWrap: 'always',
   singleQuote: true,
+  printWidth: 120,
 };

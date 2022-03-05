@@ -48,5 +48,6 @@ module.exports = {
     ],
     'tsdoc/syntax': 'error',
     'import/no-cycle': 'off',
+    'max-len': ['error', { code: 120 }],
   },
 };
