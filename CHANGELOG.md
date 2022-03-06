@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.1.4 (2022-03-06)
+
+
+### Features
+
+* implement debounce utility ([562b0e3](https://vighnesh153/vighnesh153/py-utils/commit/562b0e3c0102b1c28f0bcd42a545beaee7bd1e15))
+
 ### 0.1.3 (2022-02-27)
 
 ### 0.1.2 (2022-02-20)
