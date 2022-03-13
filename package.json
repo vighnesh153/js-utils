@@ -1,6 +1,6 @@
 {
   "name": "@vighnesh153/utils",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Some utility tools for javascript (types included).",
   "main": "./dist/utils.js",
   "umd-file": "./dist/utils.umd.js",
