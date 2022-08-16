@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
   schedule:
     # Cron editor: https://claudiuconstantin.github.io/cron-editor/
-    - cron: '0 5 ? * SUN'
+    - cron: '0 0 1 * *'
 
 jobs:
   build:
