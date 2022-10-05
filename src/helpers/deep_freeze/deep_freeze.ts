@@ -6,6 +6,13 @@ import { DeepReadonly } from 'ts-essentials';
  * @param o - object to be frozen
  */
 export const deepFreeze = <T>(o: T): DeepReadonly<T> => {
-  Object.values(o).forEach((v) => Object.isFrozen(v) || deepFreeze(v));
+  if (o === null) return null as DeepReadonly<T>;
+
+  if (Array.isArray(o)) {
+    o.forEach((v) => Object.isFrozen(v) || deepFreeze(v));
+  } else if (typeof o === 'object') {
+    Object.values(o).forEach((v) => Object.isFrozen(v) || deepFreeze(v));
+  }
+
   return Object.freeze(o) as DeepReadonly<T>;
 };
