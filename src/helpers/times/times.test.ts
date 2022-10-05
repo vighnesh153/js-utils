@@ -4,9 +4,7 @@ describe('Helpers > times tests', () => {
   it('should throw error if count is negative or non-integer', () => {
     expect(() => {
       times(-10).do(() => null);
-    }).toThrowErrorMatchingInlineSnapshot(
-      `"Expected \\"n\\" to be a positive integer, found \\"-10\\""`
-    );
+    }).toThrowErrorMatchingInlineSnapshot(`"Expected "n" to be a positive integer, found "-10""`);
   });
 
   it('should do something "n" number of times', () => {

@@ -27,9 +27,7 @@ describe('Data Structures > Heap tests', () => {
     const heap = new Heap('123');
     expect(() => {
       heap.pop(-1);
-    }).toThrowErrorMatchingInlineSnapshot(
-      `"Expected \\"count\\" to be a positive integer, found \\"-1\\""`
-    );
+    }).toThrowErrorMatchingInlineSnapshot(`"Expected "count" to be a positive integer, found "-1""`);
   });
 
   it('should pop the smallest element from the heap', () => {
@@ -64,14 +62,14 @@ describe('Data Structures > Heap tests', () => {
   it('should throw if trying to peek with negative count', () => {
     const heap = new Heap([2, 4, 1, 6]);
     expect(() => heap.peek(-2)).toThrowErrorMatchingInlineSnapshot(
-      `"Expected \\"count\\" to be a positive integer, found \\"-2\\""`
+      `"Expected "count" to be a positive integer, found "-2""`
     );
   });
 
   it('should throw if trying to peek with floating point count', () => {
     const heap = new Heap([2, 4, 1, 6]);
     expect(() => heap.peek(1.45)).toThrowErrorMatchingInlineSnapshot(
-      `"Expected \\"count\\" to be a positive integer, found \\"1.45\\""`
+      `"Expected "count" to be a positive integer, found "1.45""`
     );
   });
 

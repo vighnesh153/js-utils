@@ -1,8 +1,8 @@
 import { debounce } from '@utils';
 
 describe('Helpers > debounce tests', () => {
-  beforeEach(jest.useFakeTimers);
-  afterEach(jest.useRealTimers);
+  beforeAll(() => jest.useFakeTimers());
+  afterAll(() => jest.useRealTimers());
 
   it('should invoke the function after debounce delay', () => {
     const originalFn = jest.fn();
@@ -10,6 +10,8 @@ describe('Helpers > debounce tests', () => {
     const debouncedFn = debounce(originalFn, debounceTime);
 
     debouncedFn();
+
+    expect(originalFn).not.toBeCalled();
 
     // Adding 10ms as buffer
     jest.advanceTimersByTime(debounceTime + 10);

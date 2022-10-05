@@ -3,13 +3,13 @@ import { gcd } from '@utils';
 describe('Math > Numbers > gcd tests', () => {
   it('should throw error if negative number is passed', () => {
     expect(() => gcd(-1)).toThrowErrorMatchingInlineSnapshot(
-      `"Expected \\"numbers[0]\\" to be a non-negative integer, found \\"-1\\""`
+      `"Expected "numbers[0]" to be a non-negative integer, found "-1""`
     );
   });
 
   it('should throw error if decimal number is passed', () => {
     expect(() => gcd(0.5)).toThrowErrorMatchingInlineSnapshot(
-      `"Expected \\"numbers[0]\\" to be a non-negative integer, found \\"0.5\\""`
+      `"Expected "numbers[0]" to be a non-negative integer, found "0.5""`
     );
   });
 

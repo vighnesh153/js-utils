@@ -4,9 +4,7 @@ describe('Helpers > Counter tests', () => {
   it('should allow to return unique keys', () => {
     const counter = new Counter([1, 2, 3, 2, 1, 2, 2]);
 
-    const sortedUniqueKeys = counter
-      .uniqueKeys()
-      .sort((k1, k2) => k1.localeCompare(k2));
+    const sortedUniqueKeys = counter.uniqueKeys().sort((k1, k2) => k1.localeCompare(k2));
 
     expect(sortedUniqueKeys).toStrictEqual(['1', '2', '3']);
   });
@@ -39,7 +37,7 @@ describe('Helpers > Counter tests', () => {
     const counter = new Counter([1, 2, 3, 1]);
 
     expect(() => counter.mostCommon(-2)).toThrowErrorMatchingInlineSnapshot(
-      `"Expected \\"count\\" to be a positive integer, found \\"-2\\""`
+      `"Expected "count" to be a positive integer, found "-2""`
     );
   });
 
@@ -47,7 +45,7 @@ describe('Helpers > Counter tests', () => {
     const counter = new Counter([1, 2, 3, 1]);
 
     expect(() => counter.mostCommon(1.41)).toThrowErrorMatchingInlineSnapshot(
-      `"Expected \\"count\\" to be a positive integer, found \\"1.41\\""`
+      `"Expected "count" to be a positive integer, found "1.41""`
     );
   });
 
@@ -64,7 +62,7 @@ describe('Helpers > Counter tests', () => {
     const counter = new Counter([1, 2, 3, 1]);
 
     expect(() => counter.leastCommon(-2)).toThrowErrorMatchingInlineSnapshot(
-      `"Expected \\"count\\" to be a positive integer, found \\"-2\\""`
+      `"Expected "count" to be a positive integer, found "-2""`
     );
   });
 
@@ -72,7 +70,7 @@ describe('Helpers > Counter tests', () => {
     const counter = new Counter([1, 2, 3, 1]);
 
     expect(() => counter.leastCommon(1.41)).toThrowErrorMatchingInlineSnapshot(
-      `"Expected \\"count\\" to be a positive integer, found \\"1.41\\""`
+      `"Expected "count" to be a positive integer, found "1.41""`
     );
   });
 
