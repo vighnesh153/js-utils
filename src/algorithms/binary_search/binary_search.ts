@@ -9,11 +9,7 @@
  *
  * @typeParam T - type of elements in the array
  */
-export const binarySearch = <T>(
-  array: T[],
-  searchFor: T,
-  key = (e: T) => e
-): number | null => {
+export function binarySearch<T>(array: T[], searchFor: T, key = (e: T) => e): number | null {
   let startIndex = 0;
   let endIndex = array.length - 1;
 
@@ -34,4 +30,4 @@ export const binarySearch = <T>(
   }
 
   return null;
-};
+}

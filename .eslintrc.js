@@ -20,7 +20,6 @@ module.exports = {
     '@typescript-eslint',
     'jest',
     'prettier',
-    'prefer-arrow',
     'eslint-plugin-tsdoc',
   ],
   settings: {
@@ -38,14 +37,6 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': 'error',
-    'prefer-arrow/prefer-arrow-functions': [
-      'error',
-      {
-        disallowPrototype: true,
-        singleReturnOnly: false,
-        classPropertiesAllowed: false,
-      },
-    ],
     'tsdoc/syntax': 'error',
     'import/no-cycle': 'off',
     'max-len': ['error', { code: 120 }],

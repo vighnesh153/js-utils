@@ -2,10 +2,7 @@ import { primeFactorize, PrimeFactors } from '@utils';
 import { Validators } from 'src/_internal_validators';
 
 // Find the intersection between 2 PrimeFactors objects
-const primeFactorsIntersection = (
-  primeFactors1: PrimeFactors | null,
-  primeFactors2: PrimeFactors
-): PrimeFactors => {
+const primeFactorsIntersection = (primeFactors1: PrimeFactors | null, primeFactors2: PrimeFactors): PrimeFactors => {
   if (primeFactors1 === null) return primeFactors2;
 
   const intersection: PrimeFactors = {};
@@ -26,7 +23,7 @@ const primeFactorsIntersection = (
  * @param numbers - List of numbers to find the gcd of
  * @throws - Will throw if numbers passed are not integers or negative
  */
-export const gcd = (...numbers: number[]): number => {
+export function gcd(...numbers: number[]): number {
   // Validate each number
   numbers.forEach((n, index) => {
     Validators.validateNonNegativeInteger(n, `numbers[${index}]`);
@@ -37,10 +34,7 @@ export const gcd = (...numbers: number[]): number => {
 
   // For each number, find the common prime factors with gcd
   numbers.forEach((n) => {
-    gcdPrimeFactors = primeFactorsIntersection(
-      gcdPrimeFactors,
-      primeFactorize(n)
-    );
+    gcdPrimeFactors = primeFactorsIntersection(gcdPrimeFactors, primeFactorize(n));
   });
 
   if (gcdPrimeFactors === null) {
@@ -52,4 +46,4 @@ export const gcd = (...numbers: number[]): number => {
     const currentPrime = parseInt(current, 10);
     return prev * currentPrime ** gcdPrimeFactors![currentPrime];
   }, 1);
-};
+}

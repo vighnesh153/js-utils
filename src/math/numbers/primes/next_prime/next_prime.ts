@@ -5,7 +5,7 @@ import { isInteger, isPrime } from '@utils';
  *
  * @param n - Find prime number after "n"
  */
-export const nextPrime = (n: number): number => {
+export function nextPrime(n: number): number {
   let current = isInteger(n) ? n + 1 : parseInt(`${n + 1}`, 10);
   let nextPrimeValue = -1;
   while (current > 1) {
@@ -16,4 +16,4 @@ export const nextPrime = (n: number): number => {
     current += 1;
   }
   return nextPrimeValue;
-};
+}

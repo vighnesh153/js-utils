@@ -1,7 +1,7 @@
 /**
  * Some utility constants
  */
-export abstract class Constants {
+export class Constants {
   /**
    * All the digits from 0 to 9
    */
@@ -45,13 +45,9 @@ export abstract class Constants {
   /**
    * All the characters that can be printed
    */
-  static printableCharacters =
-    Constants.digits +
-    Constants.alphabet +
-    Constants.punctuation +
-    Constants.whitespace;
+  static printableCharacters = Constants.digits + Constants.alphabet + Constants.punctuation + Constants.whitespace;
 
-  protected constructor() {
+  private constructor() {
     throw new Error(`Don't instantiate or inherit the Constants class`);
   }
 }

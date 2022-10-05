@@ -8,10 +8,10 @@ import { not } from '@utils';
  * @param getKey - Mapper that maps the input args of "fn"
  * to a unique key. This will be used as identifier for caching
  */
-export const memoize = <T extends Array<any>, U>(
+export function memoize<T extends Array<any>, U>(
   fn: (...args: T) => U,
   getKey = (...args: T): string | number | boolean => JSON.stringify(args)
-) => {
+) {
   // Cache to hold all the values
   const memo = new Map<string | number | boolean, U>();
 
@@ -28,4 +28,4 @@ export const memoize = <T extends Array<any>, U>(
     // Return the cached value
     return memo.get(key) as U;
   };
-};
+}

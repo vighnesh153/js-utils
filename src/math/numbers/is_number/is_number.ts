@@ -3,6 +3,6 @@
  *
  * @param value - value under test
  */
-export const isNumber = (value: any): boolean => {
+export function isNumber(value: any): boolean {
   return typeof value === 'number';
-};
+}

@@ -18,7 +18,7 @@ export interface TimesReturnValue {
  *
  * @param n - number of times
  */
-export const times = (n: number): TimesReturnValue => {
+export function times(n: number): TimesReturnValue {
   Validators.validatePositiveInteger(n, 'n');
 
   return {
@@ -30,4 +30,4 @@ export const times = (n: number): TimesReturnValue => {
       return result;
     },
   };
-};
+}

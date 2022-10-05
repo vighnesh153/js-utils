@@ -13,7 +13,7 @@ export interface PrimeFactors {
  *
  * @param num - number to prime factorize
  */
-export const primeFactorize = (num: number): PrimeFactors => {
+export function primeFactorize(num: number): PrimeFactors {
   let n = num;
   const primeFactors: PrimeFactors = {};
 
@@ -28,4 +28,4 @@ export const primeFactorize = (num: number): PrimeFactors => {
   }
 
   return primeFactors;
-};
+}

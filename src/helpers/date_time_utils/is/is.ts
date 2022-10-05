@@ -43,7 +43,7 @@ export interface DateComparisonHelpers {
  *
  * @param date - Compare this date with some other date
  */
-export const is = (date: Date): DateComparisonHelpers => {
+export function is(date: Date): DateComparisonHelpers {
   const initialTime = date.getTime();
 
   const sameAs = (compareWithDate: Date): boolean => {
@@ -73,4 +73,4 @@ export const is = (date: Date): DateComparisonHelpers => {
     after,
     onOrAfter,
   };
-};
+}

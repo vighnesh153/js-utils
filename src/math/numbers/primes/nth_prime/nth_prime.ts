@@ -7,7 +7,7 @@ import { isPrime } from '@utils';
  * @param n - nth prime
  * @throws Will throw if n is not a positive integer
  */
-export const nthPrime = (n: number): number => {
+export function nthPrime(n: number): number {
   Validators.validatePositiveInteger(n, 'n');
 
   let count = 0;
@@ -24,4 +24,4 @@ export const nthPrime = (n: number): number => {
   }
 
   return nthPrimeValue;
-};
+}

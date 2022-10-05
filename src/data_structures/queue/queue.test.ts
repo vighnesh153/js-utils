@@ -63,9 +63,7 @@ describe('Data Structures > Queue tests', () => {
 
   it('should throw if peekLeft is invoked on an empty Queue', () => {
     const queue = new Queue();
-    expect(queue.peekLeft).toThrowErrorMatchingInlineSnapshot(
-      `"Queue is empty"`
-    );
+    expect(() => queue.peekLeft()).toThrowErrorMatchingInlineSnapshot(`"Queue is empty"`);
   });
 
   it('should allow to peek an element from the right', () => {
@@ -81,9 +79,7 @@ describe('Data Structures > Queue tests', () => {
 
   it('should throw if peekRight is invoked on an empty Queue', () => {
     const queue = new Queue();
-    expect(queue.peekRight).toThrowErrorMatchingInlineSnapshot(
-      `"Queue is empty"`
-    );
+    expect(() => queue.peekRight()).toThrowErrorMatchingInlineSnapshot(`"Queue is empty"`);
   });
 
   it('should return the popped element from the left', () => {
@@ -105,9 +101,7 @@ describe('Data Structures > Queue tests', () => {
 
   it('should throw if popLeft is invoked on an empty queue', () => {
     const queue = new Queue();
-    expect(queue.popLeft).toThrowErrorMatchingInlineSnapshot(
-      `"Queue is empty"`
-    );
+    expect(() => queue.popLeft()).toThrowErrorMatchingInlineSnapshot(`"Queue is empty"`);
   });
 
   it('should return the popped element from the right', () => {
@@ -129,9 +123,7 @@ describe('Data Structures > Queue tests', () => {
 
   it('should throw if popRight is invoked on an empty queue', () => {
     const queue = new Queue();
-    expect(queue.popRight).toThrowErrorMatchingInlineSnapshot(
-      `"Queue is empty"`
-    );
+    expect(() => queue.popRight()).toThrowErrorMatchingInlineSnapshot(`"Queue is empty"`);
   });
 
   it('should allow to reverse a queue', () => {

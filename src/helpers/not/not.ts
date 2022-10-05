@@ -3,6 +3,6 @@
  *
  * @param value - value to be boolean-negated
  */
-export const not = (value: any): boolean => {
+export function not(value: any): boolean {
   return Boolean(value) === false;
-};
+}

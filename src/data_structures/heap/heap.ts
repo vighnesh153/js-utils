@@ -18,8 +18,9 @@ export type HeapComparator = number;
  */
 export type HeapComparatorFn<T> = (el1: T, el2: T) => HeapComparator;
 
-const defaultComparatorFn = <T>(el1: T, el2: T): HeapComparator =>
-  el1 <= el2 ? -1 : 1;
+function defaultComparatorFn<T>(el1: T, el2: T): HeapComparator {
+  return el1 <= el2 ? -1 : 1;
+}
 
 /**
  * Heap implementation
@@ -45,10 +46,7 @@ export class Heap<T> {
     return this.size === 0;
   }
 
-  constructor(
-    initialIterable: Iterable<T> = [],
-    comparatorFn: HeapComparatorFn<T> = defaultComparatorFn
-  ) {
+  constructor(initialIterable: Iterable<T> = [], comparatorFn: HeapComparatorFn<T> = defaultComparatorFn) {
     this.items = Array.from(initialIterable);
     this.comparatorFn = comparatorFn;
 
@@ -60,12 +58,12 @@ export class Heap<T> {
    *
    * @param entries - All the elements to be added to the heap
    */
-  push = (...entries: T[]): void => {
+  push(...entries: T[]): void {
     entries.forEach((entry) => {
       this.items.push(entry);
       this.siftUp(this.items.length - 1);
     });
-  };
+  }
 
   /**
    * Pops "n" elements from the heap
@@ -73,10 +71,10 @@ export class Heap<T> {
    * @throws Will throw an error if count is not a positive integer
    * @param count - Count of elements to be popped
    */
-  pop = (count = 1): T[] => {
+  pop(count = 1): T[] {
     Validators.validatePositiveInteger(count, 'count');
-    return times(count).do(this.popOne);
-  };
+    return times(count).do(() => this.popOne());
+  }
 
   /**
    * Returns the top "n" elements.
@@ -84,41 +82,41 @@ export class Heap<T> {
    * @throws Will throw an error if count is not a positive integer
    * @param count - Count of elements to be peeked
    */
-  peek = (count = 1): T[] => {
+  peek(count = 1): T[] {
     Validators.validatePositiveInteger(count, 'count');
     const peekHowMany = count > this.size ? this.size : count;
     const peekElements = this.pop(peekHowMany);
     this.push(...peekElements);
     return [...peekElements];
-  };
+  }
 
   /**
    * Converts the heap to a sorted array
    */
-  toSortedArray = (): T[] => {
+  toSortedArray(): T[] {
     const result: T[] = [];
     const heap = new Heap(this.items, this.comparatorFn);
     while (heap.size > 0) {
       result.push(heap.popOne());
     }
     return result;
-  };
+  }
 
   /**
    * Runs the heapify algorithm on the items iterable
    */
-  private heapify = (): void => {
+  private heapify(): void {
     for (let i = this.items.length - 1; i >= 0; i -= 1) {
       this.siftDown(i);
     }
-  };
+  }
 
   /**
    * Pops one element from the heap
    *
    * @throws Will throw if the heap is empty
    */
-  private popOne = (): T => {
+  private popOne(): T {
     if (this.size === 0) {
       throw new Error('Heap is empty');
     }
@@ -136,14 +134,14 @@ export class Heap<T> {
     this.siftDown(0);
 
     return topElement;
-  };
+  }
 
   /**
    * Sifts the element at "startPosition" till the top of the heap tree.
    *
    * @param startPosition - Sift up from this position
    */
-  private siftUp = (startPosition: number): void => {
+  private siftUp(startPosition: number): void {
     const calculateNextIndices = (newCurrentIndex: number) => ({
       newCurrentIndex,
       newParentIndex: Math.ceil(newCurrentIndex / 2) - 1,
@@ -178,14 +176,14 @@ export class Heap<T> {
       currentIndex = nextIndices.newCurrentIndex;
       parentIndex = nextIndices.newParentIndex;
     }
-  };
+  }
 
   /**
    * Sifts the element at "startPosition" till the bottom of the heap tree.
    *
    * @param startPosition - Sift down from this position
    */
-  private siftDown = (startPosition: number): void => {
+  private siftDown(startPosition: number): void {
     const calculateNextIndices = (newCurrentIndex: number) => {
       const leftChildIndex = 2 * newCurrentIndex + 1;
       const rightChildIndex = leftChildIndex + 1;
@@ -239,5 +237,5 @@ export class Heap<T> {
       currentIndex = nextIndices.newCurrentIndex;
       childIndex = nextIndices.newChildIndex;
     }
-  };
+  }
 }

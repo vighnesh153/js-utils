@@ -44,9 +44,9 @@ export class Counter<T> {
   /**
    * The unique keys from the provided iterable
    */
-  uniqueKeys = (): string[] => {
+  uniqueKeys(): string[] {
     return Object.keys(this.items);
-  };
+  }
 
   /**
    * Get the count of occurrences of provided key in
@@ -54,9 +54,9 @@ export class Counter<T> {
    *
    * @param key - Count occurrences of "key"
    */
-  countFor = (key: any): number => {
+  countFor(key: any): number {
     return this.items[key];
-  };
+  }
 
   /**
    * Get the top "n" elements which have the most occurrence
@@ -66,10 +66,10 @@ export class Counter<T> {
    *
    * @param count - how many elements
    */
-  mostCommon = (count = 1): CounterKeyCount[] => {
+  mostCommon(count = 1): CounterKeyCount[] {
     Validators.validatePositiveInteger(count, 'count');
     return this.maxHeap.peek(count);
-  };
+  }
 
   /**
    * Get the top "n" elements which have the least occurrence
@@ -79,22 +79,19 @@ export class Counter<T> {
    *
    * @param count - how many elements
    */
-  leastCommon = (count = 1): CounterKeyCount[] => {
+  leastCommon(count = 1): CounterKeyCount[] {
     Validators.validatePositiveInteger(count, 'count');
     return this.minHeap.peek(count);
-  };
+  }
 
   /**
    * Returns the unique keys and their respective counts
    */
-  getItems = (): CounterItems => {
+  getItems(): CounterItems {
     return { ...this.items };
-  };
+  }
 
-  private static countIterable = <Q>(
-    iterable: Iterable<Q>,
-    keyGetter: (item: Q) => string
-  ): CounterItems => {
+  private static countIterable<Q>(iterable: Iterable<Q>, keyGetter: (item: Q) => string): CounterItems {
     const items: CounterItems = {};
 
     // Iterate over all the items and increment their count
@@ -104,26 +101,20 @@ export class Counter<T> {
     });
 
     return items;
-  };
+  }
 
-  private static heapify = (
-    items: CounterItems
-  ): { maxHeap: Heap<CounterKeyCount>; minHeap: Heap<CounterKeyCount> } => {
+  private static heapify(items: CounterItems): { maxHeap: Heap<CounterKeyCount>; minHeap: Heap<CounterKeyCount> } {
     const keyCounts: CounterKeyCount[] = Object.keys(items).map((key) => ({
       key,
       count: items[key],
     }));
 
     // Needed for getting mostCommon elements
-    const maxHeap = new Heap<CounterKeyCount>(keyCounts, (el1, el2) =>
-      el1.count > el2.count ? -1 : 1
-    );
+    const maxHeap = new Heap<CounterKeyCount>(keyCounts, (el1, el2) => (el1.count > el2.count ? -1 : 1));
 
     // Needed for getting leastCommon elements
-    const minHeap = new Heap<CounterKeyCount>(keyCounts, (el1, el2) =>
-      el1.count < el2.count ? -1 : 1
-    );
+    const minHeap = new Heap<CounterKeyCount>(keyCounts, (el1, el2) => (el1.count < el2.count ? -1 : 1));
 
     return { maxHeap, minHeap };
-  };
+  }
 }

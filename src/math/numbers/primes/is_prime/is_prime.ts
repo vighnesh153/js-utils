@@ -5,7 +5,7 @@ import { isInteger, not } from '@utils';
  *
  * @param n - number under test
  */
-export const isPrime = (n: number): boolean => {
+export function isPrime(n: number): boolean {
   // If number is not an integer, it is not prime
   if (not(isInteger(n))) {
     return false;
@@ -42,4 +42,4 @@ export const isPrime = (n: number): boolean => {
 
   // It all other cases, it is prime
   return true;
-};
+}

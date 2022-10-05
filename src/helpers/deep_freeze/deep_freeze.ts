@@ -5,7 +5,7 @@ import { DeepReadonly } from 'ts-essentials';
  *
  * @param o - object to be frozen
  */
-export const deepFreeze = <T>(o: T): DeepReadonly<T> => {
+export function deepFreeze<T>(o: T): DeepReadonly<T> {
   if (o === null) return null as DeepReadonly<T>;
 
   if (Array.isArray(o)) {
@@ -15,4 +15,4 @@ export const deepFreeze = <T>(o: T): DeepReadonly<T> => {
   }
 
   return Object.freeze(o) as DeepReadonly<T>;
-};
+}

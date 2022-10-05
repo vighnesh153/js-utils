@@ -10,11 +10,7 @@
  *
  * @typeParam T - type of elements in the array
  */
-export const binarySearchRightmostOccurrence = <T>(
-  array: T[],
-  searchFor: T,
-  key = (e: T) => e
-): number | null => {
+export function binarySearchRightmostOccurrence<T>(array: T[], searchFor: T, key = (e: T) => e): number | null {
   let startIndex = 0;
   let endIndex = array.length - 1;
 
@@ -38,4 +34,4 @@ export const binarySearchRightmostOccurrence = <T>(
   }
 
   return foundIndex;
-};
+}

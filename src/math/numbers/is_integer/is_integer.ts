@@ -3,9 +3,9 @@
  *
  * @param value - value under test
  */
-export const isInteger = (value: any): boolean => {
+export function isInteger(value: any): boolean {
   if (typeof value !== 'number') {
     return false;
   }
   return parseInt(`${value}`, 10) === value;
-};
+}

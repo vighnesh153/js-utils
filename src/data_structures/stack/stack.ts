@@ -42,28 +42,28 @@ export class Stack<T> {
    *
    * @throws Will throw error if stack is empty
    */
-  peek = (): T => {
+  peek(): T {
     if (this.isEmpty) {
       throw new Error('Stack is empty');
     }
     return this.head!.entry;
-  };
+  }
 
   /**
    * Push entries to the top of the stack
    *
    * @param entries - entries to be added to the stack
    */
-  push = (...entries: T[]): void => {
-    entries.forEach(this.pushOne);
-  };
+  push(...entries: T[]): void {
+    entries.forEach((entry) => this.pushOne(entry));
+  }
 
   /**
    * Pop out the topmost entry from the stack
    *
    * @throws Will throw error if stack is empty
    */
-  pop = (): T => {
+  pop(): T {
     if (this.isEmpty) {
       throw new Error('Stack is empty');
     }
@@ -77,19 +77,19 @@ export class Stack<T> {
 
     // Return the node's value
     return toRemoveNode.entry;
-  };
+  }
 
   /**
    * Reverse the stack
    */
-  reverse = (): Stack<T> => {
+  reverse(): Stack<T> {
     return new Stack<T>(...this.toArray().reverse());
-  };
+  }
 
   /**
    * Converts the stack to array. Order is from bottom to top of stack.
    */
-  toArray = (): T[] => {
+  toArray(): T[] {
     const result: T[] = [];
 
     let currentNode = this.head;
@@ -100,7 +100,7 @@ export class Stack<T> {
 
     // Should return in reverse as we want the order to be from bottom to top of the stack
     return result.reverse();
-  };
+  }
 
   /**
    * Clones the stack instance.
@@ -108,9 +108,9 @@ export class Stack<T> {
    * @param cloneEntry - Callback to clone the entry.
    * By default, returns the same entry
    */
-  clone = (cloneEntry: (entry: T) => T = (entry) => entry): Stack<T> => {
+  clone(cloneEntry: (entry: T) => T = (entry) => entry): Stack<T> {
     return this.map(cloneEntry);
-  };
+  }
 
   /**
    * Map every element of the stack to a different form.
@@ -118,11 +118,11 @@ export class Stack<T> {
    * @typeParam Q - return type of the map function
    * @param mapFn - Map the stack elements to a new form
    */
-  map = <Q>(mapFn: (entry: T) => Q = (e) => e as unknown as Q): Stack<Q> => {
+  map<Q>(mapFn: (entry: T) => Q = (e) => e as unknown as Q): Stack<Q> {
     const newStack = new Stack<Q>();
     newStack.push(...this.toArray().map(mapFn));
     return newStack;
-  };
+  }
 
   /**
    * Filter out entries from the stack
@@ -131,18 +131,18 @@ export class Stack<T> {
    * entries. If returns true, the entry will be added to the new stack,
    * else, will be skipped
    */
-  filter = (filterFn: (entry: T) => boolean = () => true): Stack<T> => {
+  filter(filterFn: (entry: T) => boolean = () => true): Stack<T> {
     const filteredStack = new Stack<T>();
     filteredStack.push(...this.toArray().filter(filterFn));
     return filteredStack;
-  };
+  }
 
   /**
    * Pushes one entry to the stack
    *
    * @param entry - new entry to be pushed to the top of the stack
    */
-  private pushOne = (entry: T): void => {
+  private pushOne(entry: T): void {
     const newNode = new StackNode(entry);
     this.countOfNodes += 1;
 
@@ -155,5 +155,5 @@ export class Stack<T> {
     // stack has at least 1 entry
     newNode.pointsTo = this.head;
     this.head = newNode;
-  };
+  }
 }

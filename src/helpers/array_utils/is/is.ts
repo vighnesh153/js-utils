@@ -30,10 +30,7 @@ export interface ArrayComparisonHelpers<T> {
    * @param areSame - predicate to see if 2 elements are same
    * @typeParam Q - type of elements in other array
    */
-  equalsTo: <Q>(
-    otherArray: Q[],
-    areSame?: (el1: T, el2: Q) => boolean
-  ) => boolean;
+  equalsTo: <Q>(otherArray: Q[], areSame?: (el1: T, el2: Q) => boolean) => boolean;
 
   /**
    * Checks if the first array is less than current one
@@ -43,10 +40,7 @@ export interface ArrayComparisonHelpers<T> {
    * 2 elements
    * @typeParam Q - type of elements in other array
    */
-  lessThan: <Q>(
-    otherArray: Q[],
-    compare?: ArrayUtilsCompareFn<T, Q>
-  ) => boolean;
+  lessThan: <Q>(otherArray: Q[], compare?: ArrayUtilsCompareFn<T, Q>) => boolean;
 
   /**
    * Checks if the array is less than or equal to other array
@@ -56,10 +50,7 @@ export interface ArrayComparisonHelpers<T> {
    * 2 elements
    * @typeParam Q - type of elements in other array
    */
-  lessThanOrEqualsTo: <Q>(
-    otherArray: Q[],
-    compare?: ArrayUtilsCompareFn<T, Q>
-  ) => boolean;
+  lessThanOrEqualsTo: <Q>(otherArray: Q[], compare?: ArrayUtilsCompareFn<T, Q>) => boolean;
 
   /**
    * Checks if the array is greater than to other array
@@ -69,10 +60,7 @@ export interface ArrayComparisonHelpers<T> {
    * 2 elements
    * @typeParam Q - type of elements in other array
    */
-  greaterThan: <Q>(
-    otherArray: Q[],
-    compare?: ArrayUtilsCompareFn<T, Q>
-  ) => boolean;
+  greaterThan: <Q>(otherArray: Q[], compare?: ArrayUtilsCompareFn<T, Q>) => boolean;
 
   /**
    * Checks if the array is greater than or equal to other array
@@ -82,19 +70,16 @@ export interface ArrayComparisonHelpers<T> {
    * 2 elements
    * @typeParam Q - type of elements in other array
    */
-  greaterThanOrEqualsTo: <Q>(
-    otherArray: Q[],
-    compare?: ArrayUtilsCompareFn<T, Q>
-  ) => boolean;
+  greaterThanOrEqualsTo: <Q>(otherArray: Q[], compare?: ArrayUtilsCompareFn<T, Q>) => boolean;
 }
 
-const defaultCompareFn = <T, Q>(el1: T, el2: Q): ArrayUtilsCompare => {
+function defaultCompareFn<T, Q>(el1: T, el2: Q): ArrayUtilsCompare {
   // @ts-ignore
   if ((el1 as unknown) < el2) return -1;
   // @ts-ignore
   if ((el1 as unknown) > el2) return 1;
   return 0;
-};
+}
 
 /**
  * Array comparison helpers
@@ -102,7 +87,7 @@ const defaultCompareFn = <T, Q>(el1: T, el2: Q): ArrayUtilsCompare => {
  * @param array - Initial array to compare with
  * @typeParam T - type of elements in first array
  */
-export const is = <T>(array: T[]): ArrayComparisonHelpers<T> => {
+export function is<T>(array: T[]): ArrayComparisonHelpers<T> {
   const equalsTo = <Q>(
     otherArray: Q[],
     areSame = (el1: T, el2: Q) => (el1 as unknown) === (el2 as unknown)
@@ -127,10 +112,7 @@ export const is = <T>(array: T[]): ArrayComparisonHelpers<T> => {
     return true;
   };
 
-  const lessThan = <Q>(
-    otherArray: Q[],
-    compare: ArrayUtilsCompareFn<T, Q> = defaultCompareFn
-  ): boolean => {
+  const lessThan = <Q>(otherArray: Q[], compare: ArrayUtilsCompareFn<T, Q> = defaultCompareFn): boolean => {
     let i = 0;
     let j = 0;
 
@@ -157,20 +139,14 @@ export const is = <T>(array: T[]): ArrayComparisonHelpers<T> => {
     return i === arrayLength && j < otherArrayLength;
   };
 
-  const lessThanOrEqualsTo = <Q>(
-    otherArray: Q[],
-    compare: ArrayUtilsCompareFn<T, Q> = defaultCompareFn
-  ): boolean => {
+  const lessThanOrEqualsTo = <Q>(otherArray: Q[], compare: ArrayUtilsCompareFn<T, Q> = defaultCompareFn): boolean => {
     if (lessThan(otherArray, compare)) {
       return true;
     }
     return equalsTo(otherArray, (el1, el2) => compare(el1, el2) === 0);
   };
 
-  const greaterThan = <Q>(
-    otherArray: Q[],
-    compare: ArrayUtilsCompareFn<T, Q> = defaultCompareFn
-  ): boolean => {
+  const greaterThan = <Q>(otherArray: Q[], compare: ArrayUtilsCompareFn<T, Q> = defaultCompareFn): boolean => {
     return not(lessThanOrEqualsTo(otherArray, compare));
   };
 
@@ -188,4 +164,4 @@ export const is = <T>(array: T[]): ArrayComparisonHelpers<T> => {
     greaterThan,
     greaterThanOrEqualsTo,
   };
-};
+}
