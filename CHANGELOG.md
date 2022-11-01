@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.1.30 (2022-11-01)
+
+
+### Bug Fixes
+
+* typedoc breaking changes ([8e677ea](https://vighnesh153/vighnesh153/py-utils/commit/8e677ea0ba5c319e4ccaa5740307b4258bfbe054))
+
 ### 0.1.29 (2022-10-01)
 
 ### 0.1.28 (2022-09-01)
