@@ -1,13 +1,13 @@
-import babel from '@rollup/plugin-babel';
-import { nodeResolve } from '@rollup/plugin-node-resolve';
-import { terser } from 'rollup-plugin-terser';
-import typescript from '@rollup/plugin-typescript';
+const babel = require('@rollup/plugin-babel');
+const { nodeResolve } = require('@rollup/plugin-node-resolve');
+const terser = require('@rollup/plugin-terser');
+const typescript = require('@rollup/plugin-typescript');
 
-import pkg from './package.json';
+const pkg = require('./package.json');
 
 const extensions = ['.ts'];
 
-export default {
+module.exports = {
   input: 'src/utils.ts',
   plugins: [
     nodeResolve({
